@@ -1,18 +1,26 @@
 import "./index.css";
+import React from "react";
 import { Composition } from "remotion";
-import { MyComposition } from "./Composition";
+import { MainVideo } from "./MainVideo";
+import { calculateMetadata } from "./calculateMetadata";
+import { TOTAL_FRAMES, VOICEOVER_SCENES } from "./voiceover-config";
 
 export const RemotionRoot: React.FC = () => {
   return (
-    <>
-      <Composition
-        id="MyComp"
-        component={MyComposition}
-        durationInFrames={60}
-        fps={30}
-        width={1280}
-        height={720}
-      />
-    </>
+    <Composition
+      id="AIEnvSetup"
+      component={MainVideo}
+      // calculateMetadata measures actual audio lengths at render time and
+      // overrides both durationInFrames and the sceneDurations prop.
+      calculateMetadata={calculateMetadata}
+      // Shown in Studio before calculateMetadata resolves (word-count estimates)
+      durationInFrames={TOTAL_FRAMES}
+      fps={30}
+      width={1920}
+      height={1080}
+      defaultProps={{
+        sceneDurations: VOICEOVER_SCENES.map((s) => s.estimatedFrames),
+      }}
+    />
   );
 };
