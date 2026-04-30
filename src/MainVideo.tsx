@@ -51,7 +51,7 @@ export const MainVideo: React.FC<MainVideoProps> = ({ sceneDurations }) => (
           <TransitionSeries.Sequence durationInFrames={duration}>
             <SceneComponent />
             {AUDIO_ENABLED && (
-              <Audio src={staticFile(`voiceover/${vo.id}.mp3`)} />
+              <Audio src={staticFile(`voiceover/lesson-1/${vo.id}.mp3`)} />
             )}
           </TransitionSeries.Sequence>
           {i < SCENES.length - 1 && (

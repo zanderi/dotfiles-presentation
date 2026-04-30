@@ -18,7 +18,7 @@ export const calculateMetadata: CalculateMetadataFunction<MainVideoProps> =
       sceneDurations = await Promise.all(
         VOICEOVER_SCENES.map(async (scene) => {
           const durationSecs = await getAudioDuration(
-            staticFile(`voiceover/${scene.id}.mp3`),
+            staticFile(`voiceover/lesson-1/${scene.id}.mp3`),
           );
           return Math.ceil(durationSecs * FPS) + POST_AUDIO_PADDING_FRAMES;
         }),
