@@ -20,6 +20,7 @@
     "@remotion/eslint-config-flat": "4.0.450",
     "@types/react": "19.2.7",
     "@types/web": "0.0.166",
+    "cross-env": "^10.1.0",
     "eslint": "9.19.0",
     "prettier": "3.8.1",
     "typescript": "5.9.3"
@@ -28,7 +29,13 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "studio:lesson-1": "cross-env LESSON=1 remotion studio",
+    "studio:lesson-2": "cross-env LESSON=2 remotion studio",
+    "render:lesson-1": "cross-env LESSON=1 remotion render",
+    "render:lesson-2": "cross-env LESSON=2 remotion render",
+    "voiceover:lesson-1": "cross-env LESSON=1 node --env-file=.env --strip-types generate-voiceover.ts",
+    "voiceover:lesson-2": "cross-env LESSON=2 node --env-file=.env --strip-types generate-voiceover.ts"
   },
   "sideEffects": [
     "*.css"
