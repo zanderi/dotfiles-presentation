@@ -1,6 +1,24 @@
 # dotfiles-presentation
 
-This is an AI-generated voice-narrated walkthrough of the dotfiles repository. A comprehensive video guide to best practices for AI environment setup.
+This repository serves two purposes:
+
+1. **Educational exercises** — a practical, self-paced guide to setting up a GitHub Copilot AI development environment, building custom agents, and organizing an agent ecosystem. Start here: **[exercises/00-start-here.md](exercises/00-start-here.md)**
+
+2. **Video source** — the source code for an AI-generated, voice-narrated walkthrough of the dotfiles repository, built with Remotion.
+
+---
+
+## 👉 New Here? Start With the Exercises
+
+If you're here to learn how to set up an AI-assisted development environment:
+
+**[→ exercises/00-start-here.md](exercises/00-start-here.md)**
+
+The exercises cover everything from first-time Copilot setup through building a fully orchestrated agent ecosystem. No prior AI tooling experience required.
+
+---
+
+## Video Project
 
 <p align="center">
   <a href="https://github.com/remotion-dev/logo">
@@ -13,7 +31,7 @@ This is an AI-generated voice-narrated walkthrough of the dotfiles repository. A
 
 Built with [Remotion](https://www.remotion.dev) - programmatic video creation in React.
 
-## Getting Started
+## Getting Started (Video Project)
 
 **Install Dependencies**
 
@@ -39,7 +57,7 @@ ELEVENLABS_VOICE_ID=your_voice_id_here
 Then generate voiceovers:
 
 ```console
-node --env-file=.env --strip-types generate-voiceover.ts
+node --env-file=.env --strip-types scripts/generate-voiceover.ts
 ```
 
 **Render video**
