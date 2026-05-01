@@ -3,6 +3,8 @@
 > **Prerequisite:** Complete `setup-exercise.md` first — you need a working Copilot environment with global instructions and at least one custom agent before starting here.
 >
 > **Goal:** Walk through the full process of kicking off a *brand new project* using Copilot as a design partner — from naming and documentation, through feature specs derived from competitor research, to a fleet-ready parallel build plan.
+>
+> **Next step after this:** Read `agent-ecosystem-guide.md` and then `building-agents-exercise.md` to learn how to build out the agent ecosystem for your new project.
 
 This is the process we used to bootstrap **Machina**, a cross-platform asset tracking app. The steps are generic — apply them to your own project.
 
