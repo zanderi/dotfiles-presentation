@@ -1,378 +1,132 @@
-# Remotion Video Project — Multi-Lesson Structure
+# Lesson 2 — Lessons Learned in AI-Assisted Development: Quick Reference
 
-## Overview
-This document describes how to organize multiple lesson videos while keeping the existing "AI Dev Setup" video intact.
-
-## Directory Structure
-
-```
-dotfiles-presentation/
-├── src/
-│   ├── shared/                           ← Shared components & utilities
-│   │   ├── components/                   (existing, used by all lessons)
-│   │   ├── constants.ts                  (existing)
-│   │   ├── fonts.ts                      (existing)
-│   │   └── index.css                     (existing)
-│   │
-│   ├── lessons/
-│   │   ├── lesson-1-ai-env-setup/        ← EXISTING VIDEO (don't touch)
-│   │   │   ├── Root.tsx
-│   │   │   ├── MainVideo.tsx
-│   │   │   ├── voiceover-config.ts
-│   │   │   ├── calculateMetadata.ts
-│   │   │   └── scenes/
-│   │   │
-│   │   ├── lesson-2-lessons-learned/     ← NEW VIDEO (this presentation)
-│   │   │   ├── Root.tsx
-│   │   │   ├── MainVideo.tsx
-│   │   │   ├── voiceover-config.ts
-│   │   │   ├── calculateMetadata.ts
-│   │   │   ├── scripts/                  ← TEXT SCRIPTS (for review before audio)
-│   │   │   │   ├── 00-introduction.md
-│   │   │   │   ├── 01-model-selection.md
-│   │   │   │   ├── 02-testing-strategy.md
-│   │   │   │   ├── 03-planned-vs-reactive.md
-│   │   │   │   ├── 04-componentization.md
-│   │   │   │   ├── 05-conductor-thinking.md
-│   │   │   │   ├── 06-project-setup.md
-│   │   │   │   ├── 07-best-practices.md
-│   │   │   │   └── 08-closing.md
-│   │   │   └── scenes/
-│   │   │
-│   │   └── lesson-3-placeholder/        ← FUTURE VIDEO (placeholder)
-│   │       └── (to be created)
-│   │
-│   ├── Root.tsx                         ← UPDATED: selector for which lesson
-│   └── index.ts
-│
-├── public/
-│   └── voiceover/
-│       ├── lesson-1/                    ← Existing audio files
-│       └── lesson-2/                    ← New audio files
-│
-├── remotion.config.ts                  ← Can stay unchanged
-├── generate-voiceover.ts               ← UPDATED: support lesson selection
-└── package.json
-```
-
-## Key Principles
-
-1. **Shared Assets at Root:**
-   - `src/shared/components/`, `src/shared/constants.ts`, etc. are used by all lessons
-   - Each lesson imports from shared
-
-2. **Lesson Isolation:**
-   - Each lesson has its own `Root.tsx`, `MainVideo.tsx`, `voiceover-config.ts`
-   - Lessons don't interfere with each other
-   - You can develop/render one lesson independently
-
-3. **Text-First Scripts:**
-   - Before generating audio, scripts live in `scripts/` as `.md` files
-   - You review and approve text scripts first
-   - Only then generate audio via `generate-voiceover.ts`
-
-4. **Voice Configuration:**
-   - Each lesson specifies its voice (e.g., John Wayne for Lesson 2)
-   - Voice ID stored in environment or voiceover-config.ts
-
-5. **Selection at Runtime:**
-   - New `Root.tsx` at project root reads an env var or URL param to choose which lesson to render
-   - Example: `LESSON=2` renders Lesson 2, `LESSON=1` renders Lesson 1
+**Status:** Complete and rendered  
+**Voice:** John Wayne (ElevenLabs, stability 0.5, similarity_boost 0.75)  
+**Frame rate:** 30fps  
+**Transitions:** 20-frame crossfade between scenes  
+**Padding:** 60 frames (2s) silence after each scene's audio ends  
+**Audio:** Generated, enabled (`AUDIO_ENABLED = true`)  
+**Output:** `remotion/out/LessonsLearned.mp4` — 27.2 MB, ~13.5 minutes  
+**Source:** `remotion/src/lessons/lesson-2-lessons-learned/`  
+**Audio files:** `remotion/public/voiceover/lesson-2/scene-00.mp3` through `scene-09.mp3`  
+**Anonymized:** All references to "Machina" removed — use "demo project" when referencing  
 
 ---
 
-## Implementation Steps
+## What This Lesson Is
 
-### Step 1: Create Lesson Directories
+A 9-scene post-mortem on lessons learned building a large-scale project with AI agent fleet orchestration. Covers the real cost of poor planning, model selection tradeoffs, testing strategy, componentization, and the mental shift from expert contributor to conductor. Narrated by John Wayne for a distinctive, authoritative tone.
+
+Target audience: engineers who have used Copilot/AI agents and want to use them more effectively at scale.
+
+---
+
+## Scene Inventory
+
+| # | Scene File | Label | Frames | Content Summary |
+|---|-----------|-------|--------|----------------|
+| 01 | `01-IntroductionScene.tsx` | Introduction | 860 | Problem statement — built with AI, made mistakes, distilled lessons |
+| 02 | `02-ModelSelectionScene.tsx` | Model Selection | 1,445 | Sonnet for exploration, Opus for precision; 15–20× cost multiplier from rework |
+| 03 | `03-TestingStrategyScene.tsx` | Testing Strategy | 1,335 | API tests ≠ UI tests; create testing agents before implementation starts |
+| 04 | `04-PlannedVsReactiveScene.tsx` | Planned vs. Reactive | 1,480 | Upfront planning + autopilot (`--allow-all`) vs. reactive prompting chaos |
+| 05 | `05-ComponentizationScene.tsx` | Componentization | 1,300 | Design system upfront — same button, 3 implementations without it |
+| 06 | `06-ConductorThinkingScene.tsx` | Conductor Thinking | 1,580 | Shift from layer expert to full-product orchestrator |
+| 07 | `07-ProjectSetupScene.tsx` | Project Setup & Governance | 1,300 | Best practices: circuit breakers, versioned instructions, metrics, validation |
+| 08 | `08-BestPracticesScene.tsx` | Two New Agents | 1,505 | Project Initialization Agent + Project Review Agent |
+| 09 | `09-ClosingScene.tsx` | Closing | 1,505 | 9 key takeaways; teaser for future lessons |
+
+**Note:** `scene-00.mp3` (John Wayne intro) exists in audio files as a legacy artifact — not wired in current `voiceover-config.ts`.  
+**Total frames (with transitions):** ~11,149 frames (~6.2 minutes at 30fps; actual render ~13.5 min due to real audio durations)
+
+---
+
+## Key Production Decisions
+
+- **Voice:** John Wayne — chosen for authoritative, distinctive tone appropriate to a "lessons learned" retrospective
+- **Padding:** 60 frames per scene (vs. 45 in lesson 1) — longer scenes need more breathing room between topics
+- **Frame formula:** `(words / 130 WPM) × 30fps` for estimates; `calculateMetadata.ts` overrides with actual MP3 durations at render time
+- **Anonymization:** "Machina" → "a large-scale project" / "demo project" — safe for public GitHub release
+- **Scope:** No John Wayne intro in final voiceover-config (scene-00 audio exists but is unused)
+
+---
+
+## Key Takeaways (For Atlas Reference)
+
+The 9 lessons from this video, in order:
+
+1. **Model selection** — Opus for precision, Sonnet for exploration; cheap execution with errors costs more
+2. **Cost of rework** — 50% of credits spent fixing mistakes that planning could have prevented
+3. **Specialized testing** — API tests and UI/E2E tests catch different bug classes; both are required
+4. **Plan upfront** — planned execution + autopilot beats reactive troubleshooting every time
+5. **Design systems** — define components, tokens, patterns before agents build anything
+6. **Conductor thinking** — full-product orchestrator perspective, not layer-specialist perspective
+7. **Automate best practices** — Project Initialization Agent + Project Review Agent
+8. **Treat instructions like code** — version control them, document changes, collect metrics
+9. **Resilience** — circuit breakers, health monitoring, fast failure, automated output validation
+
+---
+
+## File Layout
+
+```
+remotion/
+├── src/lessons/lesson-2-lessons-learned/
+│   ├── Root.tsx                  ← Remotion composition root
+│   ├── MainVideo.tsx             ← Scene sequencer with audio sync
+│   ├── calculateMetadata.ts      ← Reads actual MP3 durations at render time
+│   ├── voiceover-config.ts       ← 9 scripts (scene-01 through scene-09)
+│   ├── index.css                 ← Lesson-specific styles
+│   ├── README.md                 ← Lesson-specific readme
+│   ├── SCRIPT_REVIEW_GUIDE.md    ← Voice setup and review notes
+│   ├── TIMING_ANALYSIS.md        ← Frame-by-frame timing breakdown
+│   └── scenes/
+│       ├── 01-IntroductionScene.tsx
+│       ├── 02-ModelSelectionScene.tsx
+│       ├── 03-TestingStrategyScene.tsx
+│       ├── 04-PlannedVsReactiveScene.tsx
+│       ├── 05-ComponentizationScene.tsx
+│       ├── 06-ConductorThinkingScene.tsx
+│       ├── 07-ProjectSetupScene.tsx
+│       ├── 08-BestPracticesScene.tsx
+│       └── 09-ClosingScene.tsx
+└── public/voiceover/lesson-2/
+    ├── scene-00.mp3  (legacy — unused)
+    └── scene-01.mp3 through scene-09.mp3
+```
+
+---
+
+## Re-rendering Lesson 2
+
+From `remotion/`:
 
 ```bash
-mkdir -p src/lessons/lesson-1-ai-env-setup/scenes
-mkdir -p src/lessons/lesson-2-lessons-learned/scenes
-mkdir -p src/lessons/lesson-2-lessons-learned/scripts
-mkdir -p public/voiceover/lesson-1
-mkdir -p public/voiceover/lesson-2
+npm i                                              # if node_modules not present
+LESSON=2 npx remotion render --composition LessonsLearned --output-location="../out/lesson-2-lessons-learned.mp4"
 ```
 
-### Step 2: Move Existing Lesson 1 Files
-
-Move these to `src/lessons/lesson-1-ai-env-setup/`:
-- `Root.tsx` → `src/lessons/lesson-1-ai-env-setup/Root.tsx`
-- `MainVideo.tsx` → `src/lessons/lesson-1-ai-env-setup/MainVideo.tsx`
-- `voiceover-config.ts` → `src/lessons/lesson-1-ai-env-setup/voiceover-config.ts`
-- `calculateMetadata.ts` → `src/lessons/lesson-1-ai-env-setup/calculateMetadata.ts`
-- `scenes/*` → `src/lessons/lesson-1-ai-env-setup/scenes/`
-- Existing audio files → `public/voiceover/lesson-1/`
-
-### Step 3: Create Root.tsx Selector
-
-New `src/Root.tsx`:
-```tsx
-import React from "react";
-import { Composition } from "remotion";
-
-// Import each lesson's components
-import { RemotionRoot as Lesson1 } from "./lessons/lesson-1-ai-env-setup/Root";
-import { RemotionRoot as Lesson2 } from "./lessons/lesson-2-lessons-learned/Root";
-
-export const RemotionRoot: React.FC = () => {
-  // Get lesson from environment or default to lesson-1
-  const lesson = process.env.LESSON || "1";
-  
-  if (lesson === "2") {
-    return <Lesson2 />;
-  }
-  
-  // Default to lesson 1
-  return <Lesson1 />;
-};
-```
-
-### Step 4: Create Lesson 2 Root & MainVideo
-
-See below for templates.
-
-### Step 5: Update generate-voiceover.ts
-
-New version supports lesson selection:
-```bash
-# Generate audio for lesson 2
-LESSON=2 node --env-file=.env --strip-types generate-voiceover.ts
-
-# Generate audio for lesson 1
-LESSON=1 node --env-file=.env --strip-types generate-voiceover.ts
-```
-
-### Step 6: Update package.json Scripts
-
-Add lesson-specific render commands:
-```json
-{
-  "scripts": {
-    "render:lesson-1": "LESSON=1 remotion render",
-    "render:lesson-2": "LESSON=2 remotion render",
-    "studio:lesson-1": "LESSON=1 remotion studio",
-    "studio:lesson-2": "LESSON=2 remotion studio",
-    "voiceover:lesson-1": "LESSON=1 node --env-file=.env --strip-types generate-voiceover.ts",
-    "voiceover:lesson-2": "LESSON=2 node --env-file=.env --strip-types generate-voiceover.ts"
-  }
-}
-```
-
----
-
-## Voice Configuration
-
-### ElevenLabs Voice IDs Reference
-
-Store this in a new file: `src/lessons/VOICES.md`
-
-```
-# ElevenLabs Voice IDs
-
-## Available Voices
-
-| Name | Voice ID | Type | Best For |
-|------|----------|------|----------|
-| Adam | pNInz6obpgDQGcFmaJgB | Male, Professional | Technical tutorials, professional narration |
-| Bella | EXAVITQu4EsNXjluf0k5 | Female, Warm | Educational, friendly content |
-| Charlie | IZSifFFhWvMMf3sXFvUZ | Male, Friendly | Casual, engaging content |
-| Dora | NM3d7MA7T5LvTf6V91LD | Female, Professional | Business, presentations |
-| Elli | MF3mGyEYCHzMOLCpIFlE | Female, Young | Youth-oriented content |
-| Grace | jsCqWAovK2LkecY7zXl4 | Female, Warm, Maternal | Nurturing, supportive content |
-| Harry | SOZ7jomhatQFSD3YZh51 | Male, Deep | Dramatic, authoritative content |
-| Lily | pFZP5JQG7iQjIQuC4 Typologie | Female, Expressive | Expressive, narrative content |
-| [John Wayne] | [CUSTOM_ID] | Male, Western | **THIS LESSON** - Iconic, distinctive voice |
-
-## How to Get John Wayne Voice
-
-1. **If using ElevenLabs Premium:**
-   - Go to https://elevenlabs.io/voice-lab
-   - Search for "John Wayne"
-   - Copy the Voice ID
-   - Set: `ELEVENLABS_VOICE_ID=<id>`
-
-2. **If using Clone Voice:**
-   - Upload John Wayne audio sample (public domain available)
-   - ElevenLabs will create a custom voice clone
-   - Use that Voice ID
-
-3. **Fallback:**
-   - If John Wayne isn't available, use "Harry" (male, deep voice) as substitute
-
-## Setting Voice for a Lesson
-
-In `src/lessons/lesson-2-lessons-learned/voiceover-config.ts`:
-
-```ts
-export const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? "[john-wayne-id]";
-export const VOICE_NAME = "John Wayne"; // For display purposes
-```
-
-Then in `generate-voiceover.ts`:
-```ts
-console.log(`🎙️  Using voice: ${process.env.VOICE_NAME || "Adam"}`);
-```
-
----
-
-## Text-First Script Workflow
-
-### Phase 1: Text Scripts (No Audio Yet)
-
-1. Write all scripts as Markdown files in `src/lessons/lesson-2-lessons-learned/scripts/`
-2. Each file = one scene
-3. Format:
-```markdown
-# Scene Title
-
-**Estimated words:** ~180  
-**Estimated frames @ 30fps (130 WPM):** ~1000 frames  
-**Voice:** John Wayne
-
----
-
-## Script
-
-[Your script text here. Include the voice introduction for the first scene.]
-
----
-
-## Notes
-
-- [Any production notes, visual cues, timing considerations]
-```
-
-### Phase 2: Review
-
-1. Read all text scripts
-2. Time them (use word count to estimate frames)
-3. Approve or request revisions
-4. NO AUDIO GENERATION YET
-
-### Phase 3: Generate Audio
-
-1. After scripts approved, compile scripts into `voiceover-config.ts`
-2. Set voice ID
-3. Run: `LESSON=2 npm run voiceover:lesson-2`
-4. Audio files written to `public/voiceover/lesson-2/`
-
-### Phase 4: Integrate & Render
-
-1. Update `MainVideo.tsx` to reference audio files
-2. In Remotion Studio: `npm run studio:lesson-2`
-3. Test video with audio
-4. Make any cuts/adjustments
-5. Render final MP4: `npm run render:lesson-2`
-
----
-
-## Workflow for Building Lesson 2
-
-### Day 1: Plan & Script
-
-- [ ] Create `src/lessons/lesson-2-lessons-learned/` folder structure
-- [ ] Write text scripts in `src/lessons/lesson-2-lessons-learned/scripts/`
-- [ ] You review scripts
-- [ ] Iterate on wording until happy
-
-### Day 2: Setup & Audio
-
-- [ ] Create `voiceover-config.ts` with scripts + voice ID
-- [ ] Create `Root.tsx` and `MainVideo.tsx`
-- [ ] Generate audio: `LESSON=2 npm run voiceover:lesson-2`
-- [ ] Audio files appear in `public/voiceover/lesson-2/`
-
-### Day 3: Build & Render
-
-- [ ] Add visual components to `MainVideo.tsx`
-- [ ] Test in Studio: `npm run studio:lesson-2`
-- [ ] Make adjustments
-- [ ] Render: `npm run render:lesson-2`
-- [ ] Output: `out/lesson-2.mp4`
-
----
-
-## Rendering Both Lessons
+Or via studio for preview:
 
 ```bash
-# Render lesson 1 (existing video)
-npm run render:lesson-1 -- --output-location="out/lesson-1-ai-env-setup.mp4"
+LESSON=2 npx remotion studio
+# Open http://localhost:3000 → select "LessonsLearned" composition
+```
 
-# Render lesson 2 (new video)
-npm run render:lesson-2 -- --output-location="out/lesson-2-lessons-learned.mp4"
+Regenerate audio (only if scripts changed — costs ElevenLabs credits):
 
-# Both videos now exist independently
-ls -la out/
-  lesson-1-ai-env-setup.mp4
-  lesson-2-lessons-learned.mp4
+```bash
+node --env-file=.env --strip-types scripts/generate-voiceover-lesson2.ts
 ```
 
 ---
 
-## File Template: voiceover-config.ts for Lesson 2
+## Relationship to the Exercises
 
-```ts
-// src/lessons/lesson-2-lessons-learned/voiceover-config.ts
-//
-// Voice: John Wayne (custom ElevenLabs voice)
-// Introduction: John Wayne introduces himself before starting the presentation
+This lesson builds on lesson 1's setup and dives into real-world application:
 
-export const AUDIO_ENABLED = false; // Set to true after generating audio
-
-export const FPS = 30;
-export const TRANSITION_FRAMES = 20;
-
-export const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? "your-john-wayne-voice-id";
-export const VOICE_NAME = "John Wayne";
-
-export const VOICEOVER_SCENES = [
-  {
-    id: "scene-00",
-    label: "John Wayne Introduction",
-    estimatedFrames: 600,
-    script:
-      "Howdy, partner. I'm John Wayne, and I'm here to tell you about lessons learned building demo-project using AI agents. Over the next thirty minutes, we'll cover some hard-won wisdom that'll save you a whole lot of grief when you're orchestrating your own AI-assisted projects.",
-  },
-  {
-    id: "scene-01",
-    label: "Introduction",
-    estimatedFrames: 750,
-    script:
-      "Welcome to Lessons Learned in AI-Assisted Development. We built demo-project using fleet orchestration and AI agents. We made mistakes. We learned a ton. Today, we're sharing those lessons so you don't have to.",
-  },
-  // ... more scenes
-] as const;
-
-export type VoiceoverScene = (typeof VOICEOVER_SCENES)[number];
-
-export const TOTAL_FRAMES =
-  VOICEOVER_SCENES.reduce((sum, s) => sum + s.estimatedFrames, 0) -
-  (VOICEOVER_SCENES.length - 1) * TRANSITION_FRAMES;
-```
-
----
-
-## Safety Checks
-
-- ✅ Existing Lesson 1 files unchanged in `src/lessons/lesson-1-ai-env-setup/`
-- ✅ New Lesson 2 is isolated in `src/lessons/lesson-2-lessons-learned/`
-- ✅ Text scripts reviewed before audio generation
-- ✅ Audio files organized by lesson in `public/voiceover/lesson-1/` and `public/voiceover/lesson-2/`
-- ✅ Both lessons can render independently
-- ✅ No conflicts when building/testing
-
----
-
-## Next Steps
-
-1. Create the lesson directories
-2. Move existing Lesson 1 files to `src/lessons/lesson-1-ai-env-setup/`
-3. Create new `src/Root.tsx` selector
-4. Update `generate-voiceover.ts` to support lesson selection
-5. Update `package.json` with lesson-specific scripts
-6. Create text scripts in `src/lessons/lesson-2-lessons-learned/scripts/`
-7. You review scripts
-8. Generate audio
-9. Build video
-
-
+| Lesson 2 Scene | Corresponding Exercise / Concept |
+|---------------|----------------------------------|
+| Model Selection + Cost of Rework | Reinforces `02-copilot-environment-walkthrough.md` model awareness |
+| Testing Strategy | Prereq knowledge for `05-building-agents-exercise.md` (Feedback category) |
+| Conductor Thinking | Core concept behind `03-agent-ecosystem-guide.md` |
+| Two New Agents | Direct input to `PFS.Utility.Common.Agents` backlog (`pfs-task-planner`, `pfs-repo-auditor`) |
