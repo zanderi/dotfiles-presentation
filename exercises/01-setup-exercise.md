@@ -273,7 +273,7 @@ Shift+Tab → plan → refine → "Accept plan and build on autopilot + /fleet"
 
 ---
 
-*Full details: [copilot-environment-walkthrough.md](copilot-environment-walkthrough.md)*
+*Full details: [02-copilot-environment-walkthrough.md](02-copilot-environment-walkthrough.md)*
 
 | Mode | Activation | Purpose |
 |---|---|---|

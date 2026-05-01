@@ -127,7 +127,7 @@ Atlas knows:
 
 Every developer's Atlas is slightly different, which is intentional. It reflects your individual working style while sharing a common foundation. At PFS, all team members extend their Atlas with shared PFS instructions from `PFS.Utility.Common.Agents`.
 
-> **See:** `setup-exercise.md` for how to configure Atlas. Your `copilot-instructions.md` is the single most important file in your tooling setup.
+> **See:** `01-setup-exercise.md` for how to configure Atlas. Your `copilot-instructions.md` is the single most important file in your tooling setup.
 
 ---
 
@@ -312,7 +312,7 @@ Every step is specialized. Every step produces output the next step can use. Atl
 
 ## Next Steps
 
-- **Build your Atlas:** `setup-exercise.md`
-- **Set up a new project with the full ecosystem:** `project-setup-exercise.md`
-- **Build your first agent:** `building-agents-exercise.md`
-- **Full environment walkthrough:** `copilot-environment-walkthrough.md`
+- **Build your Atlas:** `01-setup-exercise.md`
+- **Set up a new project with the full ecosystem:** `project-01-setup-exercise.md`
+- **Build your first agent:** `05-building-agents-exercise.md`
+- **Full environment walkthrough:** `02-copilot-environment-walkthrough.md`

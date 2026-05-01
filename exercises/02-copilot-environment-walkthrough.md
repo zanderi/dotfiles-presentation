@@ -3,7 +3,7 @@
 > **Audience:** Development team
 > **Goal:** Understand how to set up and personalize your Copilot environment for maximum effectiveness and security.
 >
-> **Next step after this:** Read `agent-ecosystem-guide.md` to understand how agents are organized into categories and how they work together across the full development pipeline.
+> **Next step after this:** Read `03-agent-ecosystem-guide.md` to understand how agents are organized into categories and how they work together across the full development pipeline.
 
 ---
 

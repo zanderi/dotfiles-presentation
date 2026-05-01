@@ -1,6 +1,6 @@
 # Building Your First Agent — Exercise
 
-> **Prerequisite:** Complete `setup-exercise.md` and read `agent-ecosystem-guide.md` first — you need a working Copilot environment and an understanding of where agents live before building one.
+> **Prerequisite:** Complete `01-setup-exercise.md` and read `03-agent-ecosystem-guide.md` first — you need a working Copilot environment and an understanding of where agents live before building one.
 >
 > **Goal:** Build a real, working agent using `pfs-agent-builder` as your guide. By the end, you'll have contributed a new agent to the shared ecosystem and understand the patterns well enough to build the next one on your own.
 
@@ -201,7 +201,7 @@ If you want Atlas to walk you through the entire process rather than running `pf
 
 ## Reference
 
-- `agent-ecosystem-guide.md` — Full taxonomy and pipeline diagram
+- `03-agent-ecosystem-guide.md` — Full taxonomy and pipeline diagram
 - `PFS.Utility.Common.Agents/AGENTS_BACKLOG.md` — Backlog items ready to build
 - `PFS.Utility.Common.Agents/ARCHITECTURE.md` — Mermaid diagram and full agent inventory
 - `PFS.Utility.Common.Agents/agents/pfs-code-reviewer.agent.md` — Gold standard reference for agent quality
