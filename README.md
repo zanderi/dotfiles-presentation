@@ -1,76 +1,153 @@
-# dotfiles-presentation
+# Start Here — AI Development Environment Guide
 
-This repository serves two purposes:
-
-1. **Educational exercises** — a practical, self-paced guide to setting up a GitHub Copilot AI development environment, building custom agents, and organizing an agent ecosystem. Start here: **[exercises/00-start-here.md](exercises/00-start-here.md)**
-
-2. **Video source** — the source code for an AI-generated, voice-narrated walkthrough of the dotfiles repository, built with Remotion.
+Welcome. If you found this repo and aren't sure what it is or where to begin, this is the right place.
 
 ---
 
-## 👉 New Here? Start With the Exercises
+## What This Is
 
-If you're here to learn how to set up an AI-assisted development environment:
+This repository is a **practical guide to setting up an AI-assisted development environment** using GitHub Copilot. It covers everything from first installation to building a fully orchestrated ecosystem of specialized AI agents that work together across your entire development pipeline.
 
-**[→ exercises/00-start-here.md](exercises/00-start-here.md)**
-
-The exercises cover everything from first-time Copilot setup through building a fully orchestrated agent ecosystem. No prior AI tooling experience required.
+The exercises here are written for software engineers — whether you're completely new to AI tooling or already using Copilot and want to use it more effectively. No prior experience with AI agents is required.
 
 ---
 
-## Video Project
+## What You'll Learn
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+By working through these exercises you'll be able to:
 
-Built with [Remotion](https://www.remotion.dev) - programmatic video creation in React.
+- Configure GitHub Copilot to know your tech stack, coding conventions, and preferences
+- Understand how instruction layers work and how to use them to give Copilot persistent context
+- Set up a `dotfiles` repo that syncs your AI configuration across every machine you work on
+- Design and build your own custom AI agents for repeated tasks
+- Understand how to organize agents into a coherent ecosystem where each one has a clear, specialized role
+- Build a project from scratch using Copilot as a full design partner — not just a code autocomplete
 
-## Getting Started (Video Project)
+---
 
-**Install Dependencies**
+## Prerequisites
 
-```console
-npm i
-```
+Before starting, you'll need:
 
-**Start Preview**
+- [ ] A GitHub account
+- [ ] [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) installed and authenticated
+- [ ] Git installed and configured
+- [ ] A code editor (VS Code recommended)
+- [ ] Basic familiarity with the command line (PowerShell or bash)
 
-```console
-npm run dev
-```
+You do **not** need a specific tech stack. The concepts apply regardless of language or framework. Examples throughout these exercises use .NET and Vue, but the principles are universal.
 
-**Generate Voiceover**
+---
 
-This project uses ElevenLabs TTS API to generate voiceovers. Create a `.env` file with:
+## How to Work Through This
 
-```
-ELEVENLABS_API_KEY=your_api_key_here
-ELEVENLABS_VOICE_ID=your_voice_id_here
-```
+The exercises are numbered — work through them in order. Each one builds on the previous.
 
-Then generate voiceovers:
+| # | Exercise | What You'll Do | Time |
+|---|----------|---------------|------|
+| 01 | [Setup Exercise](exercises/01-setup-exercise.md) | Install Copilot, create your global instructions, set up your dotfiles repo | ~30 min |
+| 02 | [Environment Walkthrough](exercises/02-copilot-environment-walkthrough.md) | Understand the instruction hierarchy — how global, repo, and task-level context layers work | ~20 min |
+| 03 | [Agent Ecosystem Guide](exercises/03-agent-ecosystem-guide.md) | Learn the 8-category agent taxonomy and how a complete AI development pipeline is structured | ~30 min |
+| 04 | [Project Setup Exercise](exercises/04-project-setup-exercise.md) | Kick off a new project using Copilot as a design partner — docs, specs, and build plan | ~45 min |
+| 05 | [Building Agents Exercise](exercises/05-building-agents-exercise.md) | Build your first custom agent and contribute it to the shared ecosystem | ~1 hour |
 
-```console
-node --env-file=.env --strip-types scripts/generate-voiceover.ts
-```
+You can also read any exercise as a standalone reference — each one is self-contained.
 
-**Render video**
+---
 
-```console
-npx remotion render
-```
+## Glossary
 
-## Documentation
+### A
 
-- [Remotion Docs](https://www.remotion.dev/docs/the-fundamentals)
-- [ElevenLabs API](https://elevenlabs.io/docs/api)
+**Agent**
+A specialized AI persona with a defined role, scope, and hard rules. An agent is configured via an `.agent.md` file and invoked by name in a Copilot CLI session. Unlike a general prompt, an agent has a persistent personality, output format, and behavioral constraints. Example: a `security-auditor` agent that only reviews for OWASP vulnerabilities and never writes code.
 
-## License
+**Atlas**
+The name given to a developer's primary, personal AI agent — configured in `~/.copilot/copilot-instructions.md`. Atlas is the orchestrator: it receives your intent, decides which specialist agents to invoke, and coordinates the session. Every developer's Atlas is slightly different because it reflects their individual stack, conventions, and preferences.
 
-Note that for some entities a company license is needed. [Read the Remotion terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+### C
+
+**Copilot CLI**
+The GitHub Copilot command-line interface — a terminal application that lets you interact with AI in your development workflow. Different from the VS Code extension: the CLI is session-based, supports custom agents and skills, and is designed for multi-step development tasks.
+
+**`copilot-instructions.md`**
+The file that configures Atlas. Stored at `~/.copilot/copilot-instructions.md` for global (personal) configuration, or at `.github/copilot-instructions.md` for repo-level configuration. Copilot reads this file at the start of every session and uses it as persistent context.
+
+### D
+
+**Dotfiles**
+A repository that stores your personal configuration files and syncs them across machines using symlinks or junctions. In the context of this guide, your dotfiles repo stores your `copilot-instructions.md`, custom agents, skills, and templates so your AI configuration follows you to every machine.
+
+**Doers**
+One of the eight agent categories. Doer agents execute work — they scaffold, generate, write, and refactor code. They produce their best output after Learner agents have already surfaced the existing patterns to follow.
+
+### F
+
+**Feedback Agents**
+One of the eight agent categories. Feedback agents validate quality after Doers produce output — code review, accessibility auditing, BDD test scenarios, E2E tests, performance review. They run before Guardians.
+
+### G
+
+**GitFlow**
+A branching strategy that defines how code moves from feature branches through development, staging, and into production. In this guide, the GitFlow workflow is the backbone of the agent pipeline — different agents run at different stages of the GitFlow lifecycle.
+
+**Guardians**
+One of the eight agent categories. Guardian agents enforce safety gates — security vulnerabilities, hardcoded secrets, breaking API changes, unsafe database migrations. They run after Feedback and before PR submission.
+
+### I
+
+**Instruction File**
+A markdown file containing rules or context that should be injected into a repo's `.github/copilot-instructions.md`. Unlike agents (which are invoked manually), instructions are always-on background context. They're not interactive — they're things Copilot should always know.
+
+### L
+
+**Learners**
+One of the eight agent categories. Learner agents are RAG (Retrieval-Augmented Generation) agents that read the existing codebase before any generative work begins. They surface patterns, naming conventions, and reference examples so Doers generate code consistent with what already exists.
+
+### O
+
+**Orchestrator**
+The top-level category containing only Atlas. The orchestrator coordinates all other agents — it doesn't specialize in any single task but knows how to route work to the right specialist and interpret the output.
+
+### P
+
+**Planning Agents**
+One of the eight agent categories. Planning agents receive a goal (a ticket, feature description, or plain-language request) and decompose it into a sequenced plan of agent invocations.
+
+**Presenters**
+One of the eight agent categories. Presenter agents produce human-readable output — implementation summaries, release notes, changelogs, user documentation. They run last in the pipeline and make AI-generated work reviewable by humans.
+
+**Prompt**
+A reusable markdown template with `{{placeholder}}` variables. Unlike an agent, a prompt has no persistent personality — it's a starting point the developer fills in and submits. Good for: bug fix starters, PR description templates, standup generators.
+
+### R
+
+**RAG (Retrieval-Augmented Generation)**
+A technique where an AI agent reads existing files before generating output, using what it finds to ground its responses in reality. In this ecosystem, Learner agents use RAG — they read your codebase before any Doer generates code, ensuring the output matches existing patterns.
+
+### S
+
+**Skill**
+A simple, stateless, single-purpose capability registered in a Copilot session. Unlike an agent, a skill doesn't have a personality or judgment — it just does one thing every time. Example: `get-current-datetime`, `validate-ulid-format`.
+
+### T
+
+**Tool Operators**
+One of the eight agent categories. Tool Operator agents interface with external systems — GitHub (creating issues, writing PR descriptions), CI/CD pipelines, package registries. They handle the mechanical steps that connect local work to the outside world.
+
+### W
+
+**Workflow**
+A multi-step AI playbook — an ordered sequence of instructions assembled into a named agent. Unlike a single-turn prompt, a workflow walks through multiple steps with conditional logic. Example: a `pfs-feature-pr` workflow that runs code review, then security audit, then generates a PR description. Note: workflow steps are independent — state is not automatically passed between them.
+
+---
+
+## About This Repo
+
+This repository also contains the source code for a video series on AI development environment setup, built with [Remotion](https://www.remotion.dev). The video project lives in the [`remotion/`](remotion/) folder, which has its own README with setup and rendering instructions.
+
+---
+
+## Questions and Contributions
+
+If something is unclear, out of date, or missing — open an issue or submit a PR. This guide is a living document and evolves as the tooling evolves.
