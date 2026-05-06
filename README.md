@@ -50,6 +50,7 @@ The exercises are numbered — work through them in order. Each one builds on th
 | 03 | [Agent Ecosystem Guide](exercises/03-agent-ecosystem-guide.md) | Learn the 8-category agent taxonomy and how a complete AI development pipeline is structured | ~30 min |
 | 04 | [Project Setup Exercise](exercises/04-project-setup-exercise.md) | Kick off a new project using Copilot as a design partner — docs, specs, and build plan | ~45 min |
 | 05 | [Building Agents Exercise](exercises/05-building-agents-exercise.md) | Build your first custom agent and contribute it to the shared ecosystem | ~1 hour |
+| 06 | [Business Agent Ecosystem](exercises/06-business-agent-ecosystem.md) | Apply the same 8-category taxonomy to the product side — Themis, discovery, spec, and the bridge to Atlas | ~30 min |
 
 You can also read any exercise as a standalone reference — each one is self-contained.
 
