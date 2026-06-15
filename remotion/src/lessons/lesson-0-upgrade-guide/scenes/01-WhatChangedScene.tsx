@@ -9,7 +9,7 @@ const OLD_LESSONS = ["Lesson 1 — AI Env Setup", "Lesson 2 — Agent Orchestrat
 const NEW_LESSONS = [
 	"0 — Upgrade Guide",
 	"1 — AI Env Setup",
-	"2 — Dev Fundamentals",
+	"2 — The Context Hierarchy",
 	"3 — Four Automation Layers",
 	"4 — Agent Ecosystem",
 	"5 — Content Types",

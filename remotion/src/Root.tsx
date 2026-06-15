@@ -12,6 +12,11 @@ import { MainVideo as MainVideoL2 } from "./lessons/lesson-2-lessons-learned/Mai
 import { calculateMetadata as calculateMetadataL2 } from "./lessons/lesson-2-lessons-learned/calculateMetadata";
 import { TOTAL_FRAMES as TOTAL_FRAMES_L2, VOICEOVER_SCENES as VOICEOVER_SCENES_L2 } from "./lessons/lesson-2-lessons-learned/voiceover-config";
 
+// Lesson 2b — Context Hierarchy
+import { MainVideo as MainVideoL2b } from "./lessons/lesson-2-context-hierarchy/MainVideo";
+import { calculateMetadata as calculateMetadataL2b } from "./lessons/lesson-2-context-hierarchy/calculateMetadata";
+import { TOTAL_FRAMES as TOTAL_FRAMES_L2b, VOICEOVER_SCENES as VOICEOVER_SCENES_L2b } from "./lessons/lesson-2-context-hierarchy/voiceover-config";
+
 // Lesson 0
 import { MainVideo as MainVideoL0 } from "./lessons/lesson-0-upgrade-guide/MainVideo";
 import { calculateMetadata as calculateMetadataL0 } from "./lessons/lesson-0-upgrade-guide/calculateMetadata";
@@ -62,6 +67,7 @@ export const RemotionRoot: React.FC = () => {
     <>
       <Composition id="UpgradeGuide" component={MainVideoL0} calculateMetadata={calculateMetadataL0} durationInFrames={TOTAL_FRAMES_L0} fps={30} width={1920} height={1080} defaultProps={{ sceneDurations: VOICEOVER_SCENES_L0.map((s) => s.estimatedFrames) }} />
       <Composition id="AIEnvSetup" component={MainVideoL1} calculateMetadata={calculateMetadataL1} durationInFrames={TOTAL_FRAMES_L1} fps={30} width={1920} height={1080} defaultProps={{ sceneDurations: VOICEOVER_SCENES_L1.map((s) => s.estimatedFrames) }} />
+      <Composition id="ContextHierarchy" component={MainVideoL2b} calculateMetadata={calculateMetadataL2b} durationInFrames={TOTAL_FRAMES_L2b} fps={30} width={1920} height={1080} defaultProps={{ sceneDurations: VOICEOVER_SCENES_L2b.map((s) => s.estimatedFrames) }} />
       <Composition id="LessonsLearned" component={MainVideoL2} calculateMetadata={calculateMetadataL2} durationInFrames={TOTAL_FRAMES_L2} fps={30} width={1920} height={1080} defaultProps={{ sceneDurations: VOICEOVER_SCENES_L2.map((s) => s.estimatedFrames) }} />
       <Composition id="FourAutomationLayers" component={MainVideoL3} calculateMetadata={calculateMetadataL3} durationInFrames={TOTAL_FRAMES_L3} fps={30} width={1920} height={1080} defaultProps={{ sceneDurations: VOICEOVER_SCENES_L3.map((s) => s.estimatedFrames) }} />
       <Composition id="AgentEcosystem" component={MainVideoL4} calculateMetadata={calculateMetadataL4} durationInFrames={TOTAL_FRAMES_L4} fps={30} width={1920} height={1080} defaultProps={{ sceneDurations: VOICEOVER_SCENES_L4.map((s) => s.estimatedFrames) }} />
