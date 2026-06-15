@@ -75,6 +75,13 @@ export const VOICEOVER_SCENES = [
 			"Launch the fleet. Watch the waves execute. Each agent works in isolation on its assigned task. When a wave completes, review the outputs before launching the next wave. Don't approve outputs blindly — the documents agents generate are the context that shapes everything downstream. Bad context in Wave 1 produces bad output in Wave 3.",
 	},
 	{
+		id: "scene-11",
+		label: "Resilience Patterns",
+		estimatedFrames: 860,
+		script:
+		  "Build resilience into your pipeline from the start. If an agent consistently fails, don't retry harder — escalate and reroute. That's the circuit breaker pattern applied to agent orchestration. Validate output automatically: schema checks, linting, semantic validation. Don't wait for a human to catch what should have been caught in the pipeline. Collect metrics — token spend on execution versus corrections, bug escape rate at each stage, rework cycles per agent. An ambiguous instruction multiplied across fifty fleet agents is fifty times the problem. Treat your agent instructions like code: version them, document changes, and fix drift before it compounds.",
+	},
+	{
 		id: "scene-10",
 		label: "Closing",
 		estimatedFrames: 901,

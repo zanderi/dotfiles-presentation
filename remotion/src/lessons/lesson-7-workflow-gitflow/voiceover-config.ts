@@ -68,6 +68,13 @@ export const VOICEOVER_SCENES = [
       "Fleet runs independent tasks in parallel. When the work decomposes into tasks that don't depend on each other — write 4 exercise files, create 6 voiceover scripts — fleet dispatches agents simultaneously and notifies you when each completes. The constraint: 4 concurrent agents maximum. Structure your fleet plan in waves: Wave 1 runs 4 tasks. Wave 2 starts when Wave 1 completes. Scope isolation is critical — each agent owns exactly one task.",
   },
   {
+    id: "scene-10",
+    label: "Test Agent Specialization",
+    estimatedFrames: 790,
+    script:
+      "API tests passed. All endpoints validated, contracts correct. Then we ran UI end-to-end tests. Eight real bugs appeared — field name mismatches, missing query params, silent data loss. All in the integration layer the API tests couldn't see. The lesson: different test agents report on different failure modes. If you only run one type, you're measuring one dimension. And the critical mistake: build your testing agents before implementation starts, not after. A test agent created after the project is mostly complete is a test agent that discovers problems instead of preventing them.",
+  },
+  {
     id: "scene-09",
     label: "Closing",
     estimatedFrames: 804,

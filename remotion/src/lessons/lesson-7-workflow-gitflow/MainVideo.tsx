@@ -11,6 +11,7 @@ import { CIEnforcementScene } from "./scenes/05-CIEnforcementScene";
 import { WorkflowAgentScene } from "./scenes/06-WorkflowAgentScene";
 import { PlanModeScene } from "./scenes/07-PlanModeScene";
 import { FleetScene } from "./scenes/08-FleetScene";
+import { TestSpecializationScene } from "./scenes/10-TestSpecializationScene";
 import { ClosingScene } from "./scenes/09-ClosingScene";
 import { VOICEOVER_SCENES, AUDIO_ENABLED } from "./voiceover-config";
 import type { MainVideoProps } from "./calculateMetadata";
@@ -27,6 +28,7 @@ const SCENES = [
 	WorkflowAgentScene,
 	PlanModeScene,
 	FleetScene,
+	TestSpecializationScene,
 	ClosingScene,
 ] as const;
 

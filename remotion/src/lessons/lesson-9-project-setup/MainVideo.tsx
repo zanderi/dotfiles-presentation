@@ -12,6 +12,7 @@ import { FeatureSpecsScene } from "./scenes/06-FeatureSpecsScene";
 import { FleetBuildPlanScene } from "./scenes/07-FleetBuildPlanScene";
 import { PlanModePrereqsScene } from "./scenes/08-PlanModePrereqsScene";
 import { RunningFleetScene } from "./scenes/09-RunningFleetScene";
+import { ResilienceScene } from "./scenes/11-ResilienceScene";
 import { ClosingScene } from "./scenes/10-ClosingScene";
 import { VOICEOVER_SCENES, AUDIO_ENABLED } from "./voiceover-config";
 import type { MainVideoProps } from "./calculateMetadata";
@@ -29,6 +30,7 @@ const SCENES = [
 	FleetBuildPlanScene,
 	PlanModePrereqsScene,
 	RunningFleetScene,
+	ResilienceScene,
 	ClosingScene,
 ] as const;
 
