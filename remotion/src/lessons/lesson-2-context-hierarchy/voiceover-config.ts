@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
 	{
+		id: "scene-00",
+		label: "Title",
+		estimatedFrames: 750,
+		script:
+			"Welcome to Lesson Two — The Context Hierarchy. Copilot doesn't just read one file when you start a conversation. It assembles a stack of context from multiple sources. This lesson maps that stack and explains what belongs in each layer.",
+	},
+	{
 		id: "scene-01",
 		label: "The Stack",
 		estimatedFrames: 831,

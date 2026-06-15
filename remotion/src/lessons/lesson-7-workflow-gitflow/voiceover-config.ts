@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
   {
+    id: "scene-00",
+    label: "Title",
+    estimatedFrames: 750,
+    script:
+      "Welcome to Lesson Seven — Workflow and GitFlow. Copilot doesn't have to stay inside the editor. This lesson wires agents into your development pipeline — pre-commit hooks, commit validation, CI enforcement, and a PR quality gate that runs automatically every time you open a pull request.",
+  },
+  {
     id: "scene-01",
     label: "The Complete GitFlow Map",
     estimatedFrames: 956,

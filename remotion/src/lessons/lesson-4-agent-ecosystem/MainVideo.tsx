@@ -3,6 +3,7 @@ import { Audio, staticFile } from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 
+import { TitleScene } from "./scenes/00-TitleScene";
 import { WhySpecialistsScene } from "./scenes/01-WhySpecialistsScene";
 import { OrchestratorScene } from "./scenes/02-OrchestratorScene";
 import { PlannersScene } from "./scenes/03-PlannersScene";
@@ -22,6 +23,7 @@ const TRANSITION = linearTiming({ durationInFrames: 20 });
 const PRES = fade();
 
 const SCENES = [
+	TitleScene,
 	WhySpecialistsScene,
 	OrchestratorScene,
 	PlannersScene,

@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
   {
+    id: "scene-00",
+    label: "Title",
+    estimatedFrames: 750,
+    script:
+      "Welcome to Lesson Eight — Skills and MCP. Skills are reusable capabilities that fire when prompted. MCP servers connect Copilot to external systems. This lesson covers how to build skills, when skills outperform agents, and how to configure MCP to give Copilot read and write access to GitHub, Jira, and more.",
+  },
+  {
     id: "scene-01",
     label: "Recap",
     estimatedFrames: 790,

@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
   {
+    id: "scene-00",
+    label: "Title",
+    estimatedFrames: 750,
+    script:
+      "Welcome to Lesson Three — Four Automation Layers. Not everything should be automated. The question is knowing which tasks belong at which level: completions, agents, fleet, and autopilot. This lesson draws those lines clearly.",
+  },
+  {
     id: "scene-01",
     label: "The Question",
     estimatedFrames: 679,

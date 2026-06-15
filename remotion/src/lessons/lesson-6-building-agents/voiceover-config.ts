@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
   {
+    id: "scene-00",
+    label: "Title",
+    estimatedFrames: 750,
+    script:
+      "Welcome to Lesson Six — Building Agents. You've used agents. Now you're going to build them. This lesson covers the agent file format, description writing, tool declarations, and the difference between agents that actually fire and agents that sit unused.",
+  },
+  {
     id: "scene-01",
     label: "The Agent File",
     estimatedFrames: 638,

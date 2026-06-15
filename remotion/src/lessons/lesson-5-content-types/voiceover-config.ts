@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
   {
+    id: "scene-00",
+    label: "Title",
+    estimatedFrames: 750,
+    script:
+      "Welcome to Lesson Five — Content Types. Agents, skills, workflows, prompts, instructions — these aren't the same thing and they're not interchangeable. This lesson explains what each content type is for, when to build which one, and why getting this right changes everything.",
+  },
+  {
     id: "scene-01",
     label: "The Five Types",
     estimatedFrames: 762,

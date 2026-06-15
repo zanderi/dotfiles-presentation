@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
   {
+    id: "scene-00",
+    label: "Title",
+    estimatedFrames: 750,
+    script:
+      "Welcome to Lesson Ten — The Business Ecosystem. The development pipeline handles code. The business pipeline handles everything else. This lesson introduces Themis, the business orchestrator, and maps the full end-to-end flow from product idea to shipped feature.",
+  },
+  {
     id: "scene-01",
     label: "Same Structure, Different Domain",
     estimatedFrames: 693,

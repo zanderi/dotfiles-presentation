@@ -3,6 +3,7 @@ import { Audio, staticFile } from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 
+import { TitleScene } from "./scenes/00-TitleScene";
 import { GitFlowMapScene } from "./scenes/01-GitFlowMapScene";
 import { PreCommitScene } from "./scenes/02-PreCommitScene";
 import { CommitMsgScene } from "./scenes/03-CommitMsgScene";
@@ -20,6 +21,7 @@ const TRANSITION = linearTiming({ durationInFrames: 20 });
 const PRES = fade();
 
 const SCENES = [
+	TitleScene,
 	GitFlowMapScene,
 	PreCommitScene,
 	CommitMsgScene,

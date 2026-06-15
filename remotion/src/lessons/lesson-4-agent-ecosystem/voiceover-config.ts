@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
   {
+    id: "scene-00",
+    label: "Title",
+    estimatedFrames: 750,
+    script:
+      "Welcome to Lesson Four — The Agent Ecosystem. One agent trying to do everything produces mediocre results across the board. Specialists do one thing well. This lesson maps the full ecosystem: orchestrators, planners, doers, feedback agents, guardians, and tool operators.",
+  },
+  {
     id: "scene-01",
     label: "Why Specialists",
     estimatedFrames: 721,

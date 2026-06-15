@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
 	{
+		id: "scene-00",
+		label: "Title",
+		estimatedFrames: 750,
+		script:
+			"Welcome to Lesson Nine — Project Setup. The biggest mistake in AI-assisted development is starting with code. This lesson covers the twenty-two documents you generate before writing a single line of app code — and why that upfront investment eliminates the fifty percent rework tax.",
+	},
+	{
 		id: "scene-01",
 		label: "Before Any Code",
 		estimatedFrames: 956,

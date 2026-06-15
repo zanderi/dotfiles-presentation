@@ -12,6 +12,13 @@ export const TRANSITION_FRAMES = 20;
 
 export const VOICEOVER_SCENES = [
   {
+    id: "scene-00",
+    label: "Title",
+    estimatedFrames: 750,
+    script:
+      "Welcome to Lesson Zero — the Upgrade Guide. If you've seen earlier versions of this curriculum, this lesson covers what's changed, why the structure was redesigned, and how the new lesson flow is organized.",
+  },
+  {
     id: "scene-01",
     label: "What Changed",
     estimatedFrames: 1053,
