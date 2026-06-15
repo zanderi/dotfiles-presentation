@@ -1,12 +1,12 @@
-# AI-First Project Kickoff — Exercise Cheatsheet
+# AI-First Project Kickoff — Project Setup
 
 > **Prerequisite:** Complete `01-setup-exercise.md` first — you need a working Copilot environment with global instructions and at least one custom agent before starting here.
 >
 > **Goal:** Walk through the full process of kicking off a *brand new project* using Copilot as a design partner — from naming and documentation, through feature specs derived from competitor research, to a fleet-ready parallel build plan.
 >
-> **Next step after this:** Read `03-agent-ecosystem-guide.md` and then `05-building-agents-exercise.md` to learn how to build out the agent ecosystem for your new project.
+> **Next step after this:** Revisit `04-agent-ecosystem.md` and `05-building-agents-exercise.md` if you want to expand the project-specific agent layer after the initial setup is done.
 
-This is the process we used to bootstrap **Machina**, a cross-platform asset tracking app. The steps are generic — apply them to your own project.
+This is the process you can use to bootstrap **MyApp**, a placeholder cross-platform app. Swap the name for your real product and keep the workflow.
 
 ---
 
@@ -22,6 +22,19 @@ Before writing a single line of code, we want Copilot to understand the project 
 6. Creating a fleet build plan to execute everything in parallel
 
 Each step feeds the next. By the end, you can hand the entire context to a fleet of agents and have them build in parallel without getting in each other's way.
+
+```mermaid
+flowchart TD
+    A[Name and frame the project] --> B[Generate core docs and setup instructions]
+    B --> C[Create .github/copilot-instructions.md]
+    C --> D[Add LSP configuration]
+    D --> E[Create global and repo-specific agents]
+    E --> F[Generate feature specs from references]
+    F --> G[Update docs with discoveries]
+    G --> H[Create FLEET.md]
+    H --> I[Verify the setup]
+    I --> J[Run fleet]
+```
 
 ---
 
@@ -43,7 +56,7 @@ Before generating docs, you need a clear mental model of:
 - Not already a product in your space
 - Evokes the right feeling, even subtly
 
-> 💡 We went through three rounds before landing on **Machina** (Latin for "machine"). Don't settle on the first batch — push for a second round with more context.
+> 💡 In this exercise we use **MyApp** as the placeholder. In a real project, push for a second or third naming round before you lock anything in. Your first batch is usually fine. Fine is not the bar.
 
 ---
 
@@ -52,8 +65,8 @@ Before generating docs, you need a clear mental model of:
 Create the folder structure first, then generate docs and instructions in one pass.
 
 ```powershell
-mkdir YourProject
-cd YourProject
+mkdir MyApp
+cd MyApp
 mkdir docs
 mkdir instructions
 ```
@@ -68,6 +81,7 @@ mkdir instructions
 > - `docs/DATA_MODEL.md` — all entities with fields and relationships
 > - `docs/FEATURES.md` — feature breakdown by phase (MVP, Phase 2, Phase 3)
 > - `docs/API_DESIGN.md` — REST API endpoint reference with conventions
+> - `docs/DESIGN_SYSTEM.md` — typography, spacing, component rules, accessibility expectations
 > - `docs/ROADMAP.md` — phased delivery plan
 > - `instructions/SETUP.md` — prerequisites and local dev setup
 > - `instructions/CONTRIBUTING.md` — Gitflow, commit conventions, PR standards
@@ -76,8 +90,27 @@ mkdir instructions
 **The docs vs. instructions split:**
 | Folder | Contains | Used by |
 |---|---|---|
-| `docs/` | What the project *is* — design decisions, entities, APIs | Developers reading to understand the system |
+| `docs/` | What the project *is* — design decisions, entities, APIs, design system rules | Developers reading to understand the system |
 | `instructions/` | How to *work on* it — setup, workflow, deployment | Developers following a process |
+
+**Suggested baseline structure:**
+
+```mermaid
+graph TD
+    A[MyApp/] --> B[README.md]
+    A --> C[docs/]
+    A --> D[instructions/]
+    C --> C1[TECH_STACK.md]
+    C --> C2[ARCHITECTURE.md]
+    C --> C3[DATA_MODEL.md]
+    C --> C4[FEATURES.md]
+    C --> C5[API_DESIGN.md]
+    C --> C6[DESIGN_SYSTEM.md]
+    C --> C7[ROADMAP.md]
+    D --> D1[SETUP.md]
+    D --> D2[CONTRIBUTING.md]
+    D --> D3[DEPLOYMENT.md]
+```
 
 > ⚠️ Generate all files in one prompt where possible. Copilot can create 10+ files simultaneously. Doing them one at a time wastes time and loses cross-file consistency.
 
@@ -102,12 +135,12 @@ New-Item .github\copilot-instructions.md
 > - Backend folder structure with explanations
 > - Frontend conventions (naming, state, API calls, styling)
 > - Backend conventions (file-per-endpoint, async rules, namespaces, validation)
-> - Data rules (ID format, timestamps, multi-tenancy enforcement)
+> - Data rules (ID format, timestamps, tenant or org scoping if applicable)
 > - Key non-negotiable rules (no hardcoded secrets, WCAG 2.1 AA, test coverage)
 
 **What makes a good project instructions file:**
-- Concrete, not vague — "ULIDs, not Guids or ints" not "use good ID types"
-- Covers the things that *break silently* if ignored (like missing org scoping in queries)
+- Concrete, not vague — `ULIDs, not GUIDs or ints` not `use good ID types`
+- Covers the things that *break silently* if ignored (like missing tenant scoping in queries)
 - Short enough to be read in 2 minutes, dense enough to be genuinely useful
 
 ---
@@ -143,8 +176,8 @@ Think about the *repeated tasks* unique to this project. General agents live in 
 New-Item "$HOME\.copilot\agents\my-agent.agent.md"
 
 # Project-scoped (only in this repo)
-mkdir .github\agents
-New-Item ".github\agents\my-agent.agent.md"
+mkdir .copilot\agents
+New-Item ".copilot\agents\my-agent.agent.md"
 ```
 
 **Agent file format:**
@@ -166,17 +199,27 @@ what patterns it follows, and what it should never do.]
 
 > I have a [Vue 3 / .NET Minimal API] project that uses [vertical slice architecture / specific patterns]. Create a custom agent called [name] that can [task]. It should follow the conventions in `.github/copilot-instructions.md`. When scaffolding files, it should output to [path pattern]. It should never [constraint].
 
-**Agents we created for Machina:**
+**Should this agent be global or repo-specific?**
+
+```mermaid
+flowchart TD
+    A[Repeated task] --> B{Useful in many repos?}
+    B -->|Yes| C[Put it in ~/.copilot/agents/]
+    B -->|No| D{Depends on this repo's paths or patterns?}
+    D -->|Yes| E[Put it in .copilot/agents/]
+    D -->|No| F[Keep refining the scope before you build it]
+```
+
+**Example agents for MyApp:**
 
 | Agent | Purpose |
 |---|---|
-| `vue-slice-scaffolder` | Scaffolds a complete Vue feature slice (component + store + service + types) |
-| `api-slice-scaffolder` | Scaffolds a .NET minimal API vertical slice (request + response + handler) |
-| `capacitor-advisor` | Advises on Capacitor plugin integrations for iOS/Android |
-| `accessibility-auditor` | Audits Vue components against WCAG 2.1 AA |
-| `design-system-validator` | Validates Bootstrap usage, typography, spacing, and design consistency |
+| `myapp-web-slice-scaffolder` | Scaffolds a frontend feature slice (component + state + service + types) |
+| `myapp-api-slice-scaffolder` | Scaffolds a backend vertical slice (request + response + handler) |
+| `design-system-validator` | Validates design system usage, spacing, typography, and consistency |
+| `accessibility-auditor` | Audits UI components against WCAG 2.1 AA |
 
-> 💡 Add new agents to your dotfiles repo so they're available across all machines and team members can pull them down.
+> 💡 Add universal agents to your dotfiles repo so they're available across all machines. Keep repo-specific agents in `.copilot/agents/` so the team gets the same project-specific behavior.
 
 ---
 
@@ -207,10 +250,10 @@ mkdir .github\instructions\features
 
 ```markdown
 ---
-applyTo: "client/src/features/assets/**"
+applyTo: "client/src/features/catalog/**"
 ---
 
-# Feature: Asset Catalog
+# Feature: Catalog
 
 ## Overview
 [What this feature does in 2–3 sentences]
@@ -243,18 +286,19 @@ applyTo: "client/src/features/assets/**"
 During screenshot analysis and feature spec writing, you'll discover things that weren't in your original docs. Update them before running fleet.
 
 **Common gaps found:**
-- Entities that weren't in `DATA_MODEL.md` (we found **Kits** from screenshots)
-- API endpoints that weren't in `API_DESIGN.md` (we found **Dashboard** endpoints)
-- A UI framework decision that needs to be documented everywhere (we added **Bootstrap 5**)
+- Entities that weren't in `DATA_MODEL.md` (for example: saved views, asset groups, approval states)
+- API endpoints that weren't in `API_DESIGN.md` (for example: dashboard summary or reporting endpoints)
+- A design system rule that needs to be documented everywhere (for example: Bootstrap 5, Tailwind, or a custom component library)
 
 **Starter prompt:**
 
-> I've added feature spec files in `.github/instructions/features/`. Cross-reference them against `docs/DATA_MODEL.md` and `docs/API_DESIGN.md`. Identify any entities or endpoints referenced in the specs that are missing from the docs, and add them.
+> I've added feature spec files in `.github/instructions/features/`. Cross-reference them against `docs/DATA_MODEL.md`, `docs/API_DESIGN.md`, and `docs/DESIGN_SYSTEM.md`. Identify any entities, endpoints, or design rules referenced in the specs that are missing from the docs, and add them.
 
 **When you add a technology (like a UI framework):**
 
 Update all of these in one pass:
 - `docs/TECH_STACK.md` — add the technology row with rationale
+- `docs/DESIGN_SYSTEM.md` — add the component, spacing, and accessibility rules
 - `.github/copilot-instructions.md` — add to the tech summary line and add specific conventions
 - `FLEET.md` (coming next) — update prerequisites and agent prompts
 
@@ -270,7 +314,7 @@ New-Item FLEET.md
 
 **Starter prompt:**
 
-> Based on the feature specs in `.github/instructions/features/`, the data model in `docs/DATA_MODEL.md`, and the API design in `docs/API_DESIGN.md`, generate a `FLEET.md` that:
+> Based on the feature specs in `.github/instructions/features/`, the data model in `docs/DATA_MODEL.md`, the API design in `docs/API_DESIGN.md`, and the design rules in `docs/DESIGN_SYSTEM.md`, generate a `FLEET.md` that:
 >
 > 1. Lists the sequential prerequisites that must be done before fleet runs
 > 2. Organizes remaining work into parallel waves (backend data layer → backend features → frontend foundation → frontend feature slices → integration/polish)
@@ -280,13 +324,14 @@ New-Item FLEET.md
 
 **Wave structure that works well:**
 
-```
-Prerequisites (sequential)
-  └── Wave 1: Core backend data layer (no cross-dependencies)
-        └── Wave 2: Feature backend slices (depend on data layer)
-              └── Wave 3: Frontend foundation (can overlap Wave 2)
-                    └── Wave 4: Frontend feature slices (parallel)
-                          └── Wave 5: Integration + audits
+```mermaid
+flowchart TD
+    A[Prerequisites - sequential] --> B[Wave 1 - core backend data layer]
+    B --> C[Wave 2 - feature backend slices]
+    B --> D[Wave 3 - frontend foundation]
+    C --> E[Wave 4 - frontend feature slices]
+    D --> E
+    E --> F[Wave 5 - integration and audits]
 ```
 
 **Key insight:** Frontend agents don't need the API *running* — they need the API *documented*. As long as `docs/API_DESIGN.md` is accurate, frontend and backend can build in parallel.
@@ -309,9 +354,9 @@ Before running fleet, the prerequisite tasks (scaffolding the project, setting u
 
 **Starter prompt (in plan mode, before prerequisites):**
 
-> I need to scaffold the Machina project: Vue 3 + Vite + Capacitor in `client/`, .NET 10 Minimal API in `api/`, Pulumi infra in `infrastructure/`. Walk me through a plan — show me every file and folder you'll create. I'll approve before you build anything.
+> I need to scaffold the MyApp project: Vue 3 + Vite + Capacitor in `client/`, .NET 10 Minimal API in `api/`, Pulumi infrastructure in `infrastructure/`. Walk me through a plan — show me every file and folder you'll create. I'll approve before you build anything.
 
-**Why plan mode matters for fleet:** Once you're in fleet territory, 5 agents are working simultaneously. If the foundation scaffolding has a mistake — wrong folder structure, wrong base config — all 5 agents build on top of that mistake. Plan mode on the prerequisites is the cheapest way to catch structural errors before they multiply.
+**Why plan mode matters for fleet:** Once you're in fleet territory, multiple agents are working simultaneously. If the foundation scaffolding has a mistake — wrong folder structure, wrong base config — every downstream agent builds on top of that mistake. Plan mode on the prerequisites is the cheapest way to catch structural errors before they multiply.
 
 **Safety rule:** Always commit before handing off to autopilot or fleet:
 
@@ -359,10 +404,10 @@ Provide each agent the standard prompt from `FLEET.md`. Monitor with `/tasks`.
 
 ## What We Built During This Session
 
-For reference, here's the complete file tree that came out of this process for Machina:
+For reference, here's a baseline file tree that comes out of this process for **MyApp**:
 
 ```
-Machina/
+MyApp/
 ├── README.md
 ├── FLEET.md
 ├── docs/
@@ -371,6 +416,7 @@ Machina/
 │   ├── DATA_MODEL.md
 │   ├── FEATURES.md
 │   ├── API_DESIGN.md
+│   ├── DESIGN_SYSTEM.md
 │   └── ROADMAP.md
 ├── instructions/
 │   ├── SETUP.md
@@ -383,18 +429,15 @@ Machina/
         └── features/
             ├── navigation-shell.instructions.md
             ├── dashboard.instructions.md
-            ├── asset-catalog.instructions.md
-            ├── asset-detail.instructions.md
+            ├── catalog.instructions.md
+            ├── detail-view.instructions.md
             ├── work-orders.instructions.md
-            ├── maintenance-schedules.instructions.md
-            ├── users-management.instructions.md
-            ├── calendar.instructions.md
-            ├── kits.instructions.md
-            ├── search.instructions.md
+            ├── scheduling.instructions.md
+            ├── reporting.instructions.md
             └── auth-onboarding.instructions.md
 ```
 
-All of the above — **22 files across 10 steps** — was generated before a single line of application code was written. That's the point. The investment in setup pays back every time an agent builds exactly what you intended without a back-and-forth correction loop.
+That baseline is **22 files before one line of app code — that's the investment**. Your repo-specific agents in `.copilot/agents/` may add even more, and that's fine. The setup work pays back every time an agent builds exactly what you intended without a correction loop.
 
 ---
 
@@ -406,14 +449,14 @@ All of the above — **22 files across 10 steps** — was generated before a sin
 | 2 | Docs + instructions | `docs/`, `instructions/` |
 | 3 | Project Copilot instructions | `.github/copilot-instructions.md` |
 | 4 | LSP config | `.github/lsp.json` |
-| 5 | Custom agents | `~/.copilot/agents/*.agent.md` |
+| 5 | Custom agents | `~/.copilot/agents/*.agent.md`, `.copilot/agents/*.agent.md` |
 | 6 | Feature specs | `.github/instructions/features/` |
-| 7 | Updated core docs | `docs/DATA_MODEL.md`, `docs/API_DESIGN.md` |
+| 7 | Updated core docs | `docs/DATA_MODEL.md`, `docs/API_DESIGN.md`, `docs/DESIGN_SYSTEM.md` |
 | 8 | Fleet build plan | `FLEET.md` |
 | 9 | Verification | `/instructions`, `/agent` |
 | 10 | Build | `/fleet` |
 
 ---
 
-*Previous step: [01-setup-exercise.md](01-setup-exercise.md)*
-*Full walkthrough: [02-copilot-environment-walkthrough.md](02-copilot-environment-walkthrough.md)*
+*Previous step: [08-skills-and-mcp.md](08-skills-and-mcp.md)*
+*Related reading: [04-agent-ecosystem.md](04-agent-ecosystem.md), [05-building-agents-exercise.md](05-building-agents-exercise.md)*

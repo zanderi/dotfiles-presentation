@@ -127,6 +127,6 @@ This lesson builds on lesson 1's setup and dives into real-world application:
 | Lesson 2 Scene | Corresponding Exercise / Concept |
 |---------------|----------------------------------|
 | Model Selection + Cost of Rework | Reinforces `02-copilot-environment-walkthrough.md` model awareness |
-| Testing Strategy | Prereq knowledge for `05-building-agents-exercise.md` (Feedback category) |
-| Conductor Thinking | Core concept behind `03-agent-ecosystem-guide.md` |
-| Two New Agents | Direct input to `PFS.Utility.Common.Agents` backlog (`pfs-task-planner`, `pfs-repo-auditor`) |
+| Testing Strategy | Prereq knowledge for `06-building-agents.md` (Feedback category) |
+| Conductor Thinking | Core concept behind `04-agent-ecosystem.md` |
+| Two New Agents | Direct input to a shared agent backlog in your dotfiles repo (`task-planner`, `repo-auditor`) |

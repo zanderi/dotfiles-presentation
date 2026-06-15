@@ -7,7 +7,7 @@
 
 ## The Same Problem, A Different Domain
 
-If you've read [03-agent-ecosystem-guide.md](03-agent-ecosystem-guide.md), the logic here is identical — just applied to a different lifecycle.
+If you've read [04-agent-ecosystem.md](04-agent-ecosystem.md), the logic here is identical — just applied to a different lifecycle.
 
 A single general-purpose AI assistant is mediocre at everything and great at nothing. The moment you give it a clear role, a defined scope, and hard rules — it becomes dramatically more reliable. The business ecosystem applies that exact same principle to the discovery-to-spec pipeline.
 
@@ -40,78 +40,95 @@ Themis is configured in your personal `copilot-instructions.md` and coordinates 
 
 ```mermaid
 flowchart TD
-    PO([👤 Product Owner / BA])
-    PO --> THEMIS
+    PO([👤 Product Owner / BA]) --> THEMIS
 
-    subgraph THEMIS["🤖 Orchestrator — Themis (personal product agent)"]
-        TNode["Titan of order & governance\nKnows your domain, roadmap, team preferences\nCoordinates all specialist agents"]
+    subgraph THEMIS_SIDE["🟨 Themis Side — research → define → validate → communicate"]
+        direction TB
+
+        subgraph THEMIS["🤖 Orchestrator — Themis (personal product agent)"]
+            TNode["Titan of order & governance\nKnows your domain, roadmap, team preferences\nCoordinates all specialist agents"]
+        end
+
+        THEMIS --> PLAN
+
+        subgraph PLAN["🧠 Planning"]
+            P1["discovery-planner — sequences research & spec agents for an initiative"]
+            P2["sprint-planner — organizes approved stories into sprints"]
+        end
+
+        PLAN --> LEARN
+
+        subgraph LEARN["📚 Learners (RAG) — Read before you spec"]
+            L1["customer-feedback-reader — support tickets, NPS, user interviews"]
+            L2["product-analytics-reader — adoption, funnel, retention data"]
+            L3["customer-success-reader — CS notes, renewal signals, churn data"]
+            L4["competitor-research-reader — market positioning, feature gaps"]
+            L5["domain-knowledge-reader — field expert interviews → knowledge doc"]
+        end
+
+        LEARN --> DO
+
+        subgraph DO["⚙️ Doers"]
+            D1["user-story-writer — well-formed stories from discovered requirements"]
+            D2["acceptance-criteria-generator — AC with edge cases & error states"]
+            D3["feature-spec-writer — full feature specification documents"]
+            D4["business-case-writer — ROI, cost-to-build, payback period"]
+            D5["solution-bridge-writer — technical feasibility brief for engineering"]
+        end
+
+        DO --> FEEDBACK
+
+        subgraph FEEDBACK["🔍 Feedback"]
+            F1["invest-auditor — story quality against INVEST criteria"]
+            F2["requirements-completeness-checker — happy path + edge + error + a11y"]
+            F3["ux-flow-auditor — user journeys vs. research findings"]
+            F4["acceptance-criteria-auditor — specific, testable, unambiguous"]
+        end
+
+        DO --> GUARD
+
+        subgraph GUARD["🛡️ Guardians"]
+            G1["scope-creep-detector — flags anything outside approved initiative scope"]
+            G2["feasibility-checker — technical & resource feasibility before sprint commit"]
+            G3["requirements-conflict-detector — contradictions across stories & ACs"]
+            G4["compliance-reviewer — GDPR, HIPAA, ADA, SOC 2 implications pre-build"]
+        end
+
+        FEEDBACK --> TOOLS
+        GUARD --> TOOLS
+
+        subgraph TOOLS["🔧 Tool Operators"]
+            T1["jira-issue-creator — creates formatted stories from approved specs"]
+            T2["roadmap-updater — keeps roadmap in sync with sprint outcomes"]
+            T3["stakeholder-notifier — structured progress updates at milestones"]
+        end
+
+        TOOLS --> PRESENT
+
+        subgraph PRESENT["📋 Presenters"]
+            O1["stakeholder-update-writer — business-readable release comms"]
+            O2["sprint-review-writer — sprint ceremony content"]
+            O3["executive-summary-writer — C-suite initiative summaries"]
+            O4["roadmap-writer — formatted roadmap documents for sharing"]
+        end
     end
 
-    THEMIS --> PLAN
+    PRESENT --> BRIDGE["solution-bridge-writer\nvalidated business brief"]
 
-    subgraph PLAN["🧠 Planning"]
-        P1["discovery-planner — sequences research & spec agents for an initiative"]
-        P2["sprint-planner — organizes approved stories into sprints"]
+    subgraph ATLAS_SIDE["🟩 Atlas Side — plan → build → review → ship"]
+        direction TB
+        A1["Atlas — developer orchestrator"]
+        A2["task-planner — decomposes dev-ready spec into agent pipeline"]
+        A3["Build agents — implement the feature"]
+        A4["Review + validation agents — quality, security, tests"]
+        A5["🚢 Shipped feature"]
+
+        A1 --> A2 --> A3 --> A4 --> A5
     end
 
-    PLAN --> LEARN
+    BRIDGE --> A1
 
-    subgraph LEARN["📚 Learners (RAG) — Read before you spec"]
-        L1["customer-feedback-reader — support tickets, NPS, user interviews"]
-        L2["product-analytics-reader — adoption, funnel, retention data"]
-        L3["customer-success-reader — CS notes, renewal signals, churn data"]
-        L4["competitor-research-reader — market positioning, feature gaps"]
-        L5["domain-knowledge-reader — field expert interviews → knowledge doc"]
-    end
-
-    LEARN --> DO
-
-    subgraph DO["⚙️ Doers"]
-        D1["user-story-writer — well-formed stories from discovered requirements"]
-        D2["acceptance-criteria-generator — AC with edge cases & error states"]
-        D3["feature-spec-writer — full feature specification documents"]
-        D4["business-case-writer — ROI, cost-to-build, payback period"]
-        D5["solution-bridge-writer — technical feasibility brief for engineering"]
-    end
-
-    DO --> FEEDBACK
-
-    subgraph FEEDBACK["🔍 Feedback"]
-        F1["invest-auditor — story quality against INVEST criteria"]
-        F2["requirements-completeness-checker — happy path + edge + error + a11y"]
-        F3["ux-flow-auditor — user journeys vs. research findings"]
-        F4["acceptance-criteria-auditor — specific, testable, unambiguous"]
-    end
-
-    DO --> GUARD
-
-    subgraph GUARD["🛡️ Guardians"]
-        G1["scope-creep-detector — flags anything outside approved initiative scope"]
-        G2["feasibility-checker — technical & resource feasibility before sprint commit"]
-        G3["requirements-conflict-detector — contradictions across stories & ACs"]
-        G4["compliance-reviewer — GDPR, HIPAA, ADA, SOC 2 implications pre-build"]
-    end
-
-    FEEDBACK --> TOOLS
-    GUARD --> TOOLS
-
-    subgraph TOOLS["🔧 Tool Operators"]
-        T1["jira-issue-creator — creates formatted stories from approved specs"]
-        T2["roadmap-updater — keeps roadmap in sync with sprint outcomes"]
-        T3["stakeholder-notifier — structured progress updates at milestones"]
-    end
-
-    TOOLS --> PRESENT
-
-    subgraph PRESENT["📋 Presenters"]
-        O1["stakeholder-update-writer — business-readable release comms"]
-        O2["sprint-review-writer — sprint ceremony content"]
-        O3["executive-summary-writer — C-suite initiative summaries"]
-        O4["roadmap-writer — formatted roadmap documents for sharing"]
-    end
-
-    PRESENT --> Done([✅ Shipped & Communicated])
-
+    style THEMIS_SIDE fill:#fff8e1,stroke:#f9a825
     style THEMIS fill:#1a1a2e,stroke:#4a4aff,color:#ffffff
     style PLAN fill:#e8f4f8,stroke:#4a9eca
     style LEARN fill:#fff8e1,stroke:#f9a825
@@ -120,7 +137,91 @@ flowchart TD
     style GUARD fill:#fce4ec,stroke:#e91e63
     style TOOLS fill:#e0f2f1,stroke:#00897b
     style PRESENT fill:#ede7f6,stroke:#5e35b1
+    style ATLAS_SIDE fill:#e8f5e9,stroke:#43a047
 ```
+
+---
+
+## The Atlas ↔ Themis Bridge
+
+```mermaid
+flowchart LR
+    subgraph THEMIS["🟨 Themis"]
+        direction LR
+        R[research] --> D[define] --> V[validate] --> C[communicate]
+    end
+
+    B[solution-bridge-writer]
+
+    subgraph ATLAS["🟩 Atlas"]
+        direction LR
+        P[plan] --> BU[build] --> RE[review] --> S[ship]
+    end
+
+    C --> B --> P
+```
+
+Most teams have developers and product owners working in parallel but never in the same pipeline. The solution-bridge-writer is the agent that translates between them. A business idea enters Themis as a concept; it exits Atlas as a shipped feature. The bridge is what makes that journey traceable.
+
+```mermaid
+sequenceDiagram
+    participant PO as Product Owner
+    participant TH as Themis
+    participant PDA as po-docs-auditor
+    participant SBW as solution-bridge-writer
+    participant AT as Atlas
+    participant TP as task-planner
+    participant FE as fleet execution
+
+    PO->>TH: Describe feature
+    TH->>PDA: Invoke requirements audit
+    PDA-->>TH: Requirements doc
+    TH->>SBW: Translate requirements doc
+    SBW-->>AT: Dev-ready spec
+    AT->>TP: Decompose implementation work
+    TP->>FE: Run execution pipeline
+    FE-->>PO: Shipped feature
+```
+
+The two ecosystems connect at two handoff points. Getting these right is where the most friction between product and engineering lives.
+
+```mermaid
+flowchart LR
+    subgraph BIZ["📦 Business Ecosystem"]
+        direction TB
+        Learners["Learners\n(customer data, analytics)"]
+        Doers["Doers\n(stories, specs)"]
+        Bridge["solution-bridge-writer\nfeasibility-checked spec + technical brief"]
+        Learners --> Doers --> Bridge
+    end
+
+    subgraph DEV["💻 Development Ecosystem"]
+        direction TB
+        TaskPlanner["task-planner\ndecomposes spec into agent plan"]
+        Build["Doers + Feedback + Guardians\n(build, review, validate)"]
+        ReleaseNotes["release-notes-writer\ntechnical release notes"]
+        TaskPlanner --> Build --> ReleaseNotes
+    end
+
+    subgraph COMMS["📢 Shared Output"]
+        GitDiff["Git Diff / Release Commits"]
+        StakeholderUpdate["stakeholder-update-writer\nplain business language"]
+    end
+
+    Bridge -->|"Plain-language technical brief\nconstraints + assumptions"| TaskPlanner
+    ReleaseNotes --> GitDiff
+    GitDiff --> StakeholderUpdate
+
+    style BIZ fill:#fff8e1,stroke:#f9a825
+    style DEV fill:#e8f5e9,stroke:#43a047
+    style COMMS fill:#e8f4f8,stroke:#4a9eca
+```
+
+**Handoff 1 — Business → Dev:**
+`solution-bridge-writer` produces a technical feasibility brief. `task-planner` on the dev side uses it to scope engineering work accurately. Product hands off a conflict-free, feasibility-checked spec. Engineering is never surprised.
+
+**Handoff 2 — Dev → Business:**
+Both ecosystems read the same git diff. `release-notes-writer` translates it for engineers. `stakeholder-update-writer` translates it for the business. One source of truth. Two audiences. Two agents.
 
 ---
 
@@ -266,50 +367,6 @@ Presenters are the last stage in the pipeline. They take the work that was done 
 
 ---
 
-## The Bridge to the Development Ecosystem
-
-The two ecosystems connect at two handoff points. Getting these right is where the most friction between product and engineering lives.
-
-```mermaid
-flowchart LR
-    subgraph BIZ["📦 Business Ecosystem"]
-        direction TB
-        Learners["Learners\n(customer data, analytics)"]
-        Doers["Doers\n(stories, specs)"]
-        Bridge["solution-bridge-writer\nfeasibility-checked spec + technical brief"]
-        Learners --> Doers --> Bridge
-    end
-
-    subgraph DEV["💻 Development Ecosystem"]
-        direction TB
-        TaskPlanner["task-planner\ndecomposes spec into agent plan"]
-        Build["Doers + Feedback + Guardians\n(build, review, validate)"]
-        ReleaseNotes["release-notes-writer\ntechnical release notes"]
-        TaskPlanner --> Build --> ReleaseNotes
-    end
-
-    subgraph COMMS["📢 Shared Output"]
-        GitDiff["Git Diff / Release Commits"]
-        StakeholderUpdate["stakeholder-update-writer\nplain business language"]
-    end
-
-    Bridge -->|"Plain-language technical brief\nconstraints + assumptions"| TaskPlanner
-    ReleaseNotes --> GitDiff
-    GitDiff --> StakeholderUpdate
-
-    style BIZ fill:#fff8e1,stroke:#f9a825
-    style DEV fill:#e8f5e9,stroke:#43a047
-    style COMMS fill:#e8f4f8,stroke:#4a9eca
-```
-
-**Handoff 1 — Business → Dev:**
-`solution-bridge-writer` produces a technical feasibility brief. `task-planner` on the dev side uses it to scope engineering work accurately. Product hands off a conflict-free, feasibility-checked spec. Engineering is never surprised.
-
-**Handoff 2 — Dev → Business:**
-Both ecosystems read the same git diff. `release-notes-writer` translates it for engineers. `stakeholder-update-writer` translates it for the business. One source of truth. Two audiences. Two agents.
-
----
-
 ## The Pipeline in Practice
 
 ```mermaid
@@ -387,5 +444,5 @@ Build in order of ROI, not completeness. You don't need everything on day one.
 ## Next Steps
 
 - **Build your Themis:** `01-setup-exercise.md` — same process as Atlas, different domain context
-- **Build your first business agent:** `05-building-agents-exercise.md` — the authoring pattern is identical
-- **Dev ecosystem counterpart:** `03-agent-ecosystem-guide.md` — understand how the two ecosystems connect
+- **Build your first business agent:** `06-building-agents.md` — the authoring pattern is identical
+- **Dev ecosystem counterpart:** `04-agent-ecosystem.md` — understand how the two ecosystems connect

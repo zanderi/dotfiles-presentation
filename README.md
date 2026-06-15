@@ -43,16 +43,54 @@ You do **not** need a specific tech stack. The concepts apply regardless of lang
 
 The exercises are numbered — work through them in order. Each one builds on the previous.
 
-| # | Exercise | What You'll Do | Time |
-|---|----------|---------------|------|
-| 01 | [Setup Exercise](exercises/01-setup-exercise.md) | Install Copilot, create your global instructions, set up your dotfiles repo | ~30 min |
-| 02 | [Environment Walkthrough](exercises/02-copilot-environment-walkthrough.md) | Understand the instruction hierarchy — how global, repo, and task-level context layers work | ~20 min |
-| 03 | [Agent Ecosystem Guide](exercises/03-agent-ecosystem-guide.md) | Learn the 8-category agent taxonomy and how a complete AI development pipeline is structured | ~30 min |
-| 04 | [Project Setup Exercise](exercises/04-project-setup-exercise.md) | Kick off a new project using Copilot as a design partner — docs, specs, and build plan | ~45 min |
-| 05 | [Building Agents Exercise](exercises/05-building-agents-exercise.md) | Build your first custom agent and contribute it to the shared ecosystem | ~1 hour |
-| 06 | [Business Agent Ecosystem](exercises/06-business-agent-ecosystem.md) | Apply the same 8-category taxonomy to the product side — Themis, discovery, spec, and the bridge to Atlas | ~30 min |
+| # | Lesson | Exercise | What You'll Do | Time |
+|---|--------|----------|----------------|------|
+| 01 | Foundation Setup | [Setup Exercise](exercises/01-setup-exercise.md) | Install Copilot, create your global instructions (Atlas), set up your dotfiles repo | ~30 min |
+| 02 | The Context Hierarchy | [Environment Walkthrough](exercises/02-copilot-environment-walkthrough.md) | Understand how instruction layers stack and merge — what loads automatically vs. what you trigger | ~20 min |
+| 03 | Four Automation Layers | *Coming soon* | Build the mental model — instructions, skills, agents, hooks — and understand why each belongs in its own layer | ~30 min |
+| 04 | The Agent Ecosystem | [Agent Ecosystem](exercises/04-agent-ecosystem.md) | Learn the 8-category taxonomy, the full pipeline with feedback loops, and where agents live | ~30 min |
+| 05 | Content Types | *Coming soon* | Walk the decision tree — agent vs workflow vs skill vs instruction vs prompt — and build your first workflow agent | ~45 min |
+| 06 | Building Real Agents | [Building Agents](exercises/06-building-agents.md) | Build a complete custom agent from description through hard rules and output format | ~1 hour |
+| 07 | Workflow Agents & GitFlow | [Workflow Agents & GitFlow](exercises/07-workflow-gitflow.md) | Complete the GitFlow integration — git hooks for the mechanical layer, CI/CD enforcement, one-command pre-PR pipeline | ~45 min |
+| 08 | Skills & MCP | [Skills & MCP](exercises/08-skills-and-mcp.md) | Build a skill, set up MCP servers, understand the security model, and know when to use each tool type | ~45 min |
+| 09 | AI-First Project Setup | [Project Setup Exercise](exercises/09-project-setup.md) | Kick off a project using Copilot as a design partner — docs, specs, design system, and fleet build plan | ~45 min |
+| 10 | The Business Ecosystem | [Business Agent Ecosystem](exercises/10-business-ecosystem.md) | Apply the same taxonomy to the product side — Themis, the bridge, and the Atlas↔Themis handoff | ~30 min |
 
 You can also read any exercise as a standalone reference — each one is self-contained.
+
+> **🎬 After completing the curriculum:** Watch [Lessons Learned at Scale](docs/lesson-2/LESSON_STRUCTURE.md) — a retrospective on doing all of this on a real production project. Covers model selection, conductor thinking, testing strategy, and the cost of skipping the setup steps.
+
+> **⏩ Already completed the original Lesson 1 & 2?** See the [Returning Learner Upgrade Guide](#returning-learner-upgrade-guide) below — it maps what you already know to the new curriculum and tells you exactly where to start.
+
+---
+
+## Returning Learner Upgrade Guide
+
+Already completed the original Lesson 1 and/or Lesson 2? Here's what maps where and where to pick up.
+
+### What you already know
+
+| Original | Topics | Status in new curriculum |
+|---|---|---|
+| **Lesson 1** (AI Dev Setup) | Install, Atlas, Dotfiles, Tool Configs, Repo Instructions, Agents intro, MCP intro, Models, Plan/Autopilot/Fleet, Verify | Covered by new Lessons 1 & 2 — **skip both** |
+| **Lesson 2** (Lessons Learned) | Model selection, testing strategy, conductor thinking, project setup, componentization | Insights woven into new Lessons 4, 6, and 9 |
+
+### Your fast-track path
+
+| New Lesson | Action |
+|---|---|
+| Lesson 1 — Foundation Setup | ⏭️ Skip |
+| Lesson 2 — Context Hierarchy | ⏭️ Skip |
+| **Lesson 3 — Four Automation Layers** | 🔴 **Start here.** This is the concept that explains why your agents don't auto-fire. |
+| Lesson 4 — Agent Ecosystem | 📖 Read — the full 8-category taxonomy and correct pipeline |
+| **Lesson 5 — Content Types** | 🔴 Build `feature-pr-gate` here — the one-command answer to your GitFlow question |
+| Lesson 6 — Building Agents | 📖 Read — now you'll build them correctly |
+| **Lesson 7 — Workflow Agents & GitFlow** | 🔴 Completes the GitFlow integration |
+| Lesson 8 — Skills & MCP | 📖 Mostly new — MCP was only a quick intro before |
+| Lesson 9 — AI-First Project Setup | 📖 Depth you saw in Lesson 2, now structured as a full workflow |
+| **Lesson 10 — Business Ecosystem** | 🔴 New — Themis, the bridge, Atlas↔Themis |
+
+**🔴 Don't skip · 📖 Worth reading · ⏭️ You have this**
 
 ---
 
@@ -139,7 +177,7 @@ One of the eight agent categories. Tool Operator agents interface with external 
 ### W
 
 **Workflow**
-A multi-step AI playbook — an ordered sequence of instructions assembled into a named agent. Unlike a single-turn prompt, a workflow walks through multiple steps with conditional logic. Example: a `pfs-feature-pr` workflow that runs code review, then security audit, then generates a PR description. Note: workflow steps are independent — state is not automatically passed between them.
+A multi-step AI playbook — an ordered sequence of instructions assembled into a named agent. Unlike a single-turn prompt, a workflow walks through multiple steps with conditional logic. Example: a `feature-pr-gate` workflow that runs code review, then security audit, then generates a PR description. Note: workflow steps are independent — state is not automatically passed between them.
 
 ---
 

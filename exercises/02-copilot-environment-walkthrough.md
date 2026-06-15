@@ -3,7 +3,7 @@
 > **Audience:** Development team
 > **Goal:** Understand how to set up and personalize your Copilot environment for maximum effectiveness and security.
 >
-> **Next step after this:** Read `03-agent-ecosystem-guide.md` to understand how agents are organized into categories and how they work together across the full development pipeline.
+> **Next step after this:** Read `04-agent-ecosystem.md` to understand how agents are organized into categories and how they work together across the full development pipeline.
 
 ---
 
@@ -118,6 +118,36 @@ These files live in the repository and are shared with the whole team via git.
 - `seo.instructions.md` — meta tag requirements for every HTML page
 - `api-design.instructions.md` — REST conventions, error response shapes
 - `database-migrations.instructions.md` — migration naming, rollback rules
+
+## The Safety Net Model
+
+Copilot is powerful, but it is **one layer of a multi-layer safety net** — not the only layer. Understanding where it fits prevents over-reliance and builds appropriate trust in the system.
+
+```mermaid
+flowchart LR
+    A["🤖 GitHub Copilot\nSuggests, generates,\nreviews, plans"] --> B
+    B["📝 Editor\nESLint / IntelliSense\nType checking\nReal-time feedback"] --> C
+    C["🔒 Pre-commit Hooks\nprettier, eslint --fix\nconventional commit check\nFast, automatic"] --> D
+    D["☁️ CI/CD Pipeline\nFull test suite\nLinting enforcement\nBuilds the PR"]
+
+    style A fill:#0078d4,stroke:#005a9e,color:#fff
+    style B fill:#6b8e23,stroke:#4a6319,color:#fff
+    style C fill:#d4a017,stroke:#a67c00,color:#fff
+    style D fill:#5e35b1,stroke:#3e1f8f,color:#fff
+```
+
+Each layer catches what the previous one missed:
+
+| Layer | Tool | When it runs | What it catches |
+|---|---|---|---|
+| AI | Copilot | As you work | Logic errors, missing edge cases, patterns |
+| Editor | ESLint, TypeScript | Real-time | Type errors, lint violations |
+| Pre-commit | Husky hooks | On every commit | Format drift, bad commit messages |
+| CI/CD | GitHub Actions | On every push | Test failures, full lint suite |
+
+**The key mindset shift:** Don't trust any single layer completely. Each layer is imperfect. The whole stack together is robust.
+
+When something slips past Copilot and makes it to CI — that's the system working. When CI catches something Copilot missed — that's also the system working.
 
 ---
 
@@ -1338,6 +1368,36 @@ Copilot decomposes the plan, dispatches subagents in parallel, monitors completi
 | `/plan` | Create an implementation plan before coding |
 | `/delegate` | Send session to GitHub — Copilot creates a PR |
 | `/research` | Deep research using GitHub search and web sources |
+
+---
+
+## Instructions Like Code
+
+Your instruction files are not static configuration — they are **living documents that drift if you don't maintain them**, just like code does.
+
+**The parallel:**
+
+| Code | Instructions |
+|---|---|
+| Wrong logic → wrong output | Wrong instructions → wrong AI output |
+| Stale documentation → confusion | Stale instructions → stale suggestions |
+| `git blame` to trace a change | Git history to trace an instruction change |
+| Reviewed in PRs | Should be reviewed in PRs |
+| Tests verify behavior | Test an instruction change by prompting against it |
+
+**Practical rules:**
+
+1. **Version them.** Every instruction file lives in git. Every change gets a commit message.
+2. **Document why, not just what.** Not `"Use ULIDs"` — but `"Use ULIDs — int IDs allow ID enumeration attacks, Guids are too long for URLs"`.
+3. **Treat drift like a bug.** If the team's approach changes and the instructions don't, every agent session runs on stale context. Find it, file it, fix it.
+4. **Review instruction changes in PRs.** Changing `.github/copilot-instructions.md` is changing the instructions every agent on the team will receive. It deserves the same review scrutiny as a code change.
+5. **Audit periodically.** Every sprint or two: read through the instructions and ask "is this still true? Is there anything we're doing now that isn't captured?"
+
+**The cost of drift:**
+
+An instruction that was accurate 3 months ago but is now outdated doesn't announce itself. It silently shapes every agent output — toward patterns the team no longer uses, constraints that were removed, conventions that changed. The only symptom is subtly wrong AI output that's hard to trace.
+
+Treat instruction maintenance as a first-class part of your dev process, not an afterthought.
 
 ---
 

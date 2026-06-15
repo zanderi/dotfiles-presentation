@@ -82,6 +82,8 @@ flowchart TD
 
     REVIEW --> SHIP
     GUARD --> SHIP
+    REVIEW -->|"Issues found → back to doers"| DO
+    GUARD -->|"Security issues → back to doers"| DO
 
     subgraph SHIP["🔧 Tool Operators"]
         T1["pr-description-writer"]
@@ -125,7 +127,7 @@ Atlas knows:
 - Your communication style
 - How to invoke other agents and interpret their output
 
-Every developer's Atlas is slightly different, which is intentional. It reflects your individual working style while sharing a common foundation. At PFS, all team members extend their Atlas with shared PFS instructions from `PFS.Utility.Common.Agents`.
+Every developer's Atlas is slightly different, which is intentional. It reflects your individual working style while sharing a common foundation. Team members can share a common agent foundation by publishing shared agents to a team dotfiles repo.
 
 > **See:** `01-setup-exercise.md` for how to configure Atlas. Your `copilot-instructions.md` is the single most important file in your tooling setup.
 
@@ -273,17 +275,10 @@ This is the most common source of confusion. Not all agents go in the same place
     └── agents/
         ├── machina-api-scaffolder    ← Repo-specific agents (this repo only)
         └── machina-vue-scaffolder    ← Must be prefixed with project name
-
-PFS.Utility.Common.Agents/   ← Shared PFS agents (synced to ~/.copilot/agents/ via setup.ps1)
-├── pfs-code-reviewer
-├── pfs-repo-auditor
-├── pfs-agent-builder
-└── pfs-technical-writer
 ```
 
 **The rule:**
 - **Universal agents** (work on any project) → `dotfiles` repo
-- **PFS-specific shared agents** → `PFS.Utility.Common.Agents`
 - **Repo-specific agents** (only make sense for one project) → that repo's `.copilot/agents/`
 
 ---
@@ -313,6 +308,6 @@ Every step is specialized. Every step produces output the next step can use. Atl
 ## Next Steps
 
 - **Build your Atlas:** `01-setup-exercise.md`
-- **Set up a new project with the full ecosystem:** `project-01-setup-exercise.md`
-- **Build your first agent:** `05-building-agents-exercise.md`
+- **Set up a new project with the full ecosystem:** `09-project-setup.md`
+- **Build your first agent:** `06-building-agents.md`
 - **Full environment walkthrough:** `02-copilot-environment-walkthrough.md`

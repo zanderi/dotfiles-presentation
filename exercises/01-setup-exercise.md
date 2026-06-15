@@ -103,8 +103,12 @@ New-Item .github\instructions\my-domain.instructions.md
 Or manually:
 
 ```powershell
-mkdir .github\agents
-New-Item ".github\agents\my-agent.agent.md"
+# Global (available in all projects):
+New-Item "$HOME\.copilot\agents\my-agent.agent.md"
+
+# Repo-specific (only this project):
+mkdir .copilot\agents
+New-Item ".copilot\agents\my-agent.agent.md"
 ```
 
 **Starter prompt:**
@@ -259,7 +263,7 @@ Shift+Tab → plan → refine → "Accept plan and build on autopilot + /fleet"
 | Repo critical rules | `AGENTS.md` (repo root) |
 | Repo instructions | `.github/copilot-instructions.md` |
 | Task-specific instructions | `.github/instructions/*.instructions.md` |
-| Repo agents | `.github/agents/*.agent.md` |
+| Repo agents | `.copilot\agents\*.agent.md` |
 | Repo skills | `.github/skills/*/SKILL.md` |
 | Repo MCP config | `.copilot/mcp-config.json` |
 | Tool configs | `.editorconfig`, `.prettierrc`, `.eslintrc`, `tsconfig.json` |

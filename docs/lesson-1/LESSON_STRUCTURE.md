@@ -106,7 +106,7 @@ The content of this lesson is the conceptual foundation for the exercises in `ex
 |---------------|----------------------|
 | Install + Global Instructions + Dotfiles | `01-setup-exercise.md` |
 | Tool Configs + Repo Instructions | `02-copilot-environment-walkthrough.md` |
-| Agents | `03-agent-ecosystem-guide.md` + `05-building-agents-exercise.md` |
-| Plan Mode + Autopilot | `04-project-setup-exercise.md` |
+| Agents | `04-agent-ecosystem.md` + `06-building-agents.md` |
+| Plan Mode + Autopilot | `09-project-setup.md` |
 
 The exercises were designed to let engineers practice and internalize what lesson 1 teaches.
