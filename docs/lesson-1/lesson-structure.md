@@ -43,7 +43,7 @@ Target audience: software engineers new to AI tooling, or engineers already usin
 
 ## Key Production Decisions
 
-- **Voice:** Standard ElevenLabs voice, not character voice (lesson 2 used John Wayne)
+- **Voice:** Standard ElevenLabs Adam voice — same voice used across all lessons
 - **Scope:** Deliberately kept to GitHub Copilot CLI only — VS Code extension not covered
 - **Frame formula:** 130 WPM × 13.85 frames/word at 30fps
 - **Transitions:** 20-frame overlap between scenes (already subtracted from total)

@@ -258,7 +258,7 @@ export const VOICEOVER_SCENES = [
 
 **Tone:** Professional, direct, slightly conversational. Match the Lesson 1 narration style. No filler phrases. Each sentence earns its place.
 
-**Source for scene content:** `PLATFORM_PLAN.md` Section 8 — each lesson has a scene table. Use the scene titles and content descriptions to write the narration.
+**Source for scene content:** `docs/platform-plan.md` Section 8 — each lesson has a scene table. Use the scene titles and content descriptions to write the narration.
 
 ---
 

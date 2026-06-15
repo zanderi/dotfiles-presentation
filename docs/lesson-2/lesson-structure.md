@@ -1,7 +1,7 @@
 # Lesson 2 — Lessons Learned in AI-Assisted Development: Quick Reference
 
 **Status:** Complete and rendered  
-**Voice:** John Wayne (ElevenLabs, stability 0.5, similarity_boost 0.75)  
+**Voice:** Adam (ElevenLabs `pNInz6obpgDQGcFmaJgB`, stability 0.5, similarity_boost 0.75, style 0.3)  
 **Frame rate:** 30fps  
 **Transitions:** 20-frame crossfade between scenes  
 **Padding:** 60 frames (2s) silence after each scene's audio ends  
@@ -15,7 +15,7 @@
 
 ## What This Lesson Is
 
-A 9-scene post-mortem on lessons learned building a large-scale project with AI agent fleet orchestration. Covers the real cost of poor planning, model selection tradeoffs, testing strategy, componentization, and the mental shift from expert contributor to conductor. Narrated by John Wayne for a distinctive, authoritative tone.
+A 9-scene post-mortem on lessons learned building a large-scale project with AI agent fleet orchestration. Covers the real cost of poor planning, model selection tradeoffs, testing strategy, componentization, and the mental shift from expert contributor to conductor.
 
 Target audience: engineers who have used Copilot/AI agents and want to use them more effectively at scale.
 
@@ -42,7 +42,7 @@ Target audience: engineers who have used Copilot/AI agents and want to use them 
 
 ## Key Production Decisions
 
-- **Voice:** John Wayne — chosen for authoritative, distinctive tone appropriate to a "lessons learned" retrospective
+- **Voice:** Adam (ElevenLabs default) — standard professional male voice
 - **Padding:** 60 frames per scene (vs. 45 in lesson 1) — longer scenes need more breathing room between topics
 - **Frame formula:** `(words / 130 WPM) × 30fps` for estimates; `calculateMetadata.ts` overrides with actual MP3 durations at render time
 - **Anonymization:** "Machina" → "a large-scale project" / "demo project" — safe for public GitHub release
@@ -76,9 +76,6 @@ remotion/
 │   ├── calculateMetadata.ts      ← Reads actual MP3 durations at render time
 │   ├── voiceover-config.ts       ← 9 scripts (scene-01 through scene-09)
 │   ├── index.css                 ← Lesson-specific styles
-│   ├── README.md                 ← Lesson-specific readme
-│   ├── SCRIPT_REVIEW_GUIDE.md    ← Voice setup and review notes
-│   ├── TIMING_ANALYSIS.md        ← Frame-by-frame timing breakdown
 │   └── scenes/
 │       ├── 01-IntroductionScene.tsx
 │       ├── 02-ModelSelectionScene.tsx

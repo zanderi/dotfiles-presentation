@@ -56,8 +56,17 @@ npx remotion render
 remotion/
 ├── src/                    # Remotion components and scenes
 │   └── lessons/
+│       ├── lesson-0-upgrade-guide/
 │       ├── lesson-1-ai-env-setup/
-│       └── lesson-2-lessons-learned/
+│       ├── lesson-2-lessons-learned/
+│       ├── lesson-3-four-automation-layers/
+│       ├── lesson-4-agent-ecosystem/
+│       ├── lesson-5-content-types/
+│       ├── lesson-6-building-agents/
+│       ├── lesson-7-workflow-gitflow/
+│       ├── lesson-8-skills-and-mcp/
+│       ├── lesson-9-project-setup/
+│       └── lesson-10-business-ecosystem/
 ├── public/voiceover/       # Generated MP3 audio files
 ├── scripts/                # Voiceover generation scripts (ElevenLabs)
 ├── remotion.config.ts

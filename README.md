@@ -47,9 +47,9 @@ The exercises are numbered — work through them in order. Each one builds on th
 |---|--------|----------|----------------|------|
 | 01 | Foundation Setup | [Setup Exercise](exercises/01-setup-exercise.md) | Install Copilot, create your global instructions (Atlas), set up your dotfiles repo | ~30 min |
 | 02 | The Context Hierarchy | [Environment Walkthrough](exercises/02-copilot-environment-walkthrough.md) | Understand how instruction layers stack and merge — what loads automatically vs. what you trigger | ~20 min |
-| 03 | Four Automation Layers | *Coming soon* | Build the mental model — instructions, skills, agents, hooks — and understand why each belongs in its own layer | ~30 min |
+| 03 | Four Automation Layers | [Four Automation Layers](exercises/03-four-automation-layers.md) | Build the mental model — instructions, skills, agents, hooks — and understand why each belongs in its own layer | ~30 min |
 | 04 | The Agent Ecosystem | [Agent Ecosystem](exercises/04-agent-ecosystem.md) | Learn the 8-category taxonomy, the full pipeline with feedback loops, and where agents live | ~30 min |
-| 05 | Content Types | *Coming soon* | Walk the decision tree — agent vs workflow vs skill vs instruction vs prompt — and build your first workflow agent | ~45 min |
+| 05 | Content Types | [Content Types](exercises/05-content-types.md) | Walk the decision tree — agent vs workflow vs skill vs instruction vs prompt — and build your first workflow agent | ~45 min |
 | 06 | Building Real Agents | [Building Agents](exercises/06-building-agents.md) | Build a complete custom agent from description through hard rules and output format | ~1 hour |
 | 07 | Workflow Agents & GitFlow | [Workflow Agents & GitFlow](exercises/07-workflow-gitflow.md) | Complete the GitFlow integration — git hooks for the mechanical layer, CI/CD enforcement, one-command pre-PR pipeline | ~45 min |
 | 08 | Skills & MCP | [Skills & MCP](exercises/08-skills-and-mcp.md) | Build a skill, set up MCP servers, understand the security model, and know when to use each tool type | ~45 min |
@@ -58,7 +58,7 @@ The exercises are numbered — work through them in order. Each one builds on th
 
 You can also read any exercise as a standalone reference — each one is self-contained.
 
-> **🎬 After completing the curriculum:** Watch [Lessons Learned at Scale](docs/lesson-2/LESSON_STRUCTURE.md) — a retrospective on doing all of this on a real production project. Covers model selection, conductor thinking, testing strategy, and the cost of skipping the setup steps.
+> **🎬 After completing the curriculum:** Watch [Lessons Learned at Scale](docs/lesson-2/lesson-structure.md) — a retrospective on doing all of this on a real production project. Covers model selection, conductor thinking, testing strategy, and the cost of skipping the setup steps.
 
 > **⏩ Already completed the original Lesson 1 & 2?** See the [Returning Learner Upgrade Guide](#returning-learner-upgrade-guide) below — it maps what you already know to the new curriculum and tells you exactly where to start.
 
