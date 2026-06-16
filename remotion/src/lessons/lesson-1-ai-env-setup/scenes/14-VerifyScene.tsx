@@ -57,7 +57,7 @@ export const VerifyScene: React.FC = () => {
           display: "flex",
           flexDirection: "row",
           gap: 60,
-          marginTop: 28,
+          marginTop: 16,
         }}
       >
         {/* LEFT — Commands */}
@@ -102,7 +102,7 @@ export const VerifyScene: React.FC = () => {
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            gap: 20,
+            gap: 12,
           }}
         >
           <div
@@ -158,7 +158,7 @@ export const VerifyScene: React.FC = () => {
           fontWeight: 700,
           color: COLORS.green,
           textAlign: "center",
-          marginTop: 16,
+          marginTop: 8,
         }}
       >
         ✅ You're ready. Go build something incredible.

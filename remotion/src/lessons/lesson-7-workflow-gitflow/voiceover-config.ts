@@ -5,7 +5,7 @@
 //   1. Set AUDIO_ENABLED = true below
 //   2. Restart Remotion Studio — audio plays in sync automatically
 
-export const AUDIO_ENABLED = false;
+export const AUDIO_ENABLED = true;
 
 export const FPS = 30;
 export const TRANSITION_FRAMES = 20;

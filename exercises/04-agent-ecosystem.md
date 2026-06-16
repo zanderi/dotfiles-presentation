@@ -129,6 +129,18 @@ Atlas knows:
 
 Every developer's Atlas is slightly different, which is intentional. It reflects your individual working style while sharing a common foundation. Team members can share a common agent foundation by publishing shared agents to a team dotfiles repo.
 
+> **🔀 Tool Portability — Personal Orchestrator**
+>
+> The "personal orchestrator" concept applies beyond Copilot CLI. In any tool that supports persistent instructions, your global config *is* your orchestrator's personality:
+>
+> | Tool | Your orchestrator config |
+> |---|---|
+> | **GitHub Copilot** | `~/.copilot/copilot-instructions.md` (name it Atlas, define its rules) |
+> | **Claude** | `~/CLAUDE.md` (same content, different path) |
+> | **ChatGPT** | Custom Instructions (account-level, no file, but same purpose) |
+>
+> The `.agent.md` ecosystem (specialists, workflow agents, skills) is GitHub Copilot CLI-specific. Claude Projects and ChatGPT GPTs offer comparable but distinct mechanisms.
+
 > **See:** `01-setup-exercise.md` for how to configure Atlas. Your `copilot-instructions.md` is the single most important file in your tooling setup.
 
 ---

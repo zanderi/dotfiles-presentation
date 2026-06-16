@@ -24,6 +24,12 @@ Think of it less like "one AI" and more like **a product team where every role i
 
 Agents work the same way.
 
+> **🔀 Tool Portability — Business Ecosystem**
+>
+> The two-orchestrator model (Atlas for dev, Themis for business) and the eight-category taxonomy are GitHub Copilot CLI patterns. The underlying principle — specialist agents with clear roles, coordinated by a personal orchestrator — applies to any AI toolchain.
+>
+> Claude users can configure named orchestrators via `CLAUDE.md` and build Claude Projects for specialist roles. ChatGPT users can configure Custom GPTs for each specialist. The naming, file format, and invocation differ. The mental model is the same.
+
 ---
 
 ## The Orchestrator — Themis

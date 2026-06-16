@@ -16,6 +16,18 @@ GitFlow works best when each stage has the **right kind of automation** attached
 
 That is the whole point: don't ask a shell script to reason, and don't ask an LLM to behave like a deterministic hook. Different tools. Different jobs. Same pipeline.
 
+> **🔀 Tool Portability — GitFlow Layers**
+>
+> The GitFlow map in this exercise uses GitHub Copilot CLI for the "orchestrated" layer, but the principle is tool-agnostic:
+>
+> | GitFlow stage | Tool layer | Tool-agnostic? |
+> |---|---|---|
+> | Pre-commit hooks | Husky + shell scripts | ✅ Works identically regardless of AI tool |
+> | CI/CD pipeline | GitHub Actions | ✅ Works identically regardless of AI tool |
+> | Pre-PR review | `feature-pr-gate` (Copilot agent) | ⚠️ Copilot CLI-specific. Claude / ChatGPT users replace this with a manual checklist or a Claude Project configured for reviews |
+>
+> Hooks and CI are the portable layers. The workflow agent layer is where tool-specific implementations differ.
+
 ---
 
 ## The Complete GitFlow Map

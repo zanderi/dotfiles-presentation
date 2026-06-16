@@ -69,8 +69,12 @@
     "render:lesson-8": "cross-env LESSON=8 remotion render",
     "render:lesson-9": "cross-env LESSON=9 remotion render",
     "render:lesson-10": "cross-env LESSON=10 remotion render",
-    "voiceover:lesson-1": "cross-env LESSON=1 node --env-file=.env --strip-types generate-voiceover.ts",
-    "voiceover:lesson-2": "cross-env LESSON=2 node --env-file=.env --strip-types generate-voiceover.ts"
+    "render:all": "node --env-file=../.env --strip-types scripts/render-all-lessons.ts",
+    "voiceover:lesson-0": "node --env-file=../.env --strip-types scripts/generate-voiceover-lesson0.ts",
+    "voiceover:lesson-1": "node --env-file=../.env --strip-types scripts/generate-voiceover-lesson1.ts",
+    "voiceover:lesson-2": "cross-env LESSON=2 node --env-file=.env --strip-types generate-voiceover.ts",
+    "voiceover:lesson-2b": "node --env-file=../.env --strip-types scripts/generate-voiceover-lesson2b.ts",
+    "voiceover:lessons-3-10": "node --env-file=../.env --strip-types scripts/generate-voiceover-lessons3-10.ts"
   },
   "sideEffects": [
     "*.css"

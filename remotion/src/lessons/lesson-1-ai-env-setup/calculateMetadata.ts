@@ -4,7 +4,7 @@ import { VOICEOVER_SCENES, AUDIO_ENABLED, FPS, TRANSITION_FRAMES } from "./voice
 
 // Padding added after audio ends before the next slide begins transitioning in.
 // Gives a beat of silence so the last word isn't clipped by the crossfade.
-const POST_AUDIO_PADDING_FRAMES = 45; // 1.5 seconds
+const POST_AUDIO_PADDING_FRAMES = 30; // 1 second
 
 export type MainVideoProps = {
   sceneDurations: number[];

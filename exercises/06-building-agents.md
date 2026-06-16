@@ -239,6 +239,43 @@ Check the current branch name and explain whether it matches the team's allowed 
 
 Everything else — scope, behavior, refusal rules, output format, and examples — belongs in the body.
 
+### The `model` field — cost control built into the agent
+
+You can pin a specific model in frontmatter so the agent always runs at the right cost tier — regardless of what model the user has selected:
+
+```md
+---
+name: context-reader
+description: "Use this agent to surface existing code patterns before writing new code..."
+tools: [read_file, search_files]
+model: claude-haiku-4.5
+---
+```
+
+**Model assignment by agent category:**
+
+| Agent category | Examples | Model to pin | Why |
+|---|---|---|---|
+| **Readers / Explorers** | `context-reader`, `docs-auditor`, `architecture-reader` | `claude-haiku-4.5` or `gpt-5.4-mini` | Just reading — no heavy reasoning needed |
+| **Standard reviewers** | `code-reviewer`, `changelog-writer`, `pr-description-writer` | `claude-sonnet-4.6` | Judgment needed but not architectural complexity |
+| **Planners / Architects** | `task-planner`, `feasibility-checker` | `claude-sonnet-4.6` or `claude-opus-4.8` | Complex multi-step reasoning |
+| **Security / Compliance** | `security-auditor`, `env-config-reviewer` | `claude-sonnet-4.6` | Pattern matching + judgment |
+| **Fleet subagents** | Any agent launched in parallel via fleet | Pin to `claude-haiku-4.5` unless the task demands more | Multiplied across N agents = N× cost |
+
+**The rule:** if the agent reads more than it thinks, pin it to lightweight. If it makes judgment calls affecting architecture or security, use standard. Only let agents use heavy models when you would accept a 5× bill for every invocation.
+
+> **🔀 Tool Portability — Agent Files**
+>
+> The `.agent.md` format is GitHub Copilot CLI-specific. Other tools have comparable mechanisms:
+>
+> | Tool | Agent equivalent | Model control |
+> |---|---|---|
+> | **GitHub Copilot** | `.agent.md` with frontmatter | `model:` field in frontmatter |
+> | **Claude** | Claude Projects with custom system prompts | Model selected per Project |
+> | **ChatGPT** | Custom GPTs | Model selected per GPT |
+>
+> The agent design principles in this exercise — clear job, hard rules, scoped tools, discoverable description — apply regardless of which tool you implement them in.
+
 ---
 
 ## The Description Field — This Controls Auto-Invocation

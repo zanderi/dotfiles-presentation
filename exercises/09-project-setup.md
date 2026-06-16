@@ -120,6 +120,19 @@ graph TD
 
 These live in `.github/copilot-instructions.md` and are **automatically loaded into every Copilot session** when you're in this project folder. Every agent, every fleet worker, every autopilot run gets this context.
 
+> **🔀 Tool Portability — Project-Level Instructions**
+>
+> The file that carries project context varies by tool, but the content is nearly identical:
+>
+> | Tool | File to create | Auto-loaded? |
+> |---|---|---|
+> | **GitHub Copilot** | `.github/copilot-instructions.md` | ✅ Yes, every session |
+> | **Claude** | `CLAUDE.md` at project root | ✅ Yes, every conversation |
+> | **Cursor** | `.cursorrules` at project root | ✅ Yes, every session |
+> | **All tools** | `AGENTS.md` at project root | ✅ Yes, model-agnostic hard rules |
+>
+> Generate the Copilot-specific file first. Then copy the key architecture rules into `AGENTS.md` for portability. Every tool on the team benefits.
+
 ```powershell
 mkdir .github
 New-Item .github\copilot-instructions.md

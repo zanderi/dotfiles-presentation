@@ -2,7 +2,7 @@ import { CalculateMetadataFunction, staticFile } from "remotion";
 import { getAudioDuration } from "@remotion/media-utils";
 import { VOICEOVER_SCENES, AUDIO_ENABLED, FPS, TRANSITION_FRAMES } from "./voiceover-config";
 
-const POST_AUDIO_PADDING_FRAMES = 45;
+const POST_AUDIO_PADDING_FRAMES = 30;
 
 export type MainVideoProps = {
 	sceneDurations: number[];

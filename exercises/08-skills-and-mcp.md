@@ -49,6 +49,16 @@ flowchart LR
 
 **Mental model:** skills change what Copilot can do *inside the session*. MCP changes what Copilot can *reach outside the session*.
 
+> **🔀 Tool Portability — Skills & MCP**
+>
+> | Copilot concept | Claude equivalent | ChatGPT equivalent |
+> |---|---|---|
+> | **Skills** (`SKILL.md`) | No direct equivalent — Claude Projects can approximate stateless tasks | No direct equivalent |
+> | **MCP servers** | Claude supports MCP natively (same protocol) | ChatGPT uses Plugins / Actions |
+> | **GitHub MCP (built-in)** | Available in Claude as a configured MCP server | Available via GitHub Actions integration |
+>
+> **Key portability win:** If you configure MCP servers (Jira, Sentry, filesystem, etc.), those same MCP servers work in Claude without reconfiguration — MCP is an open protocol, not a Copilot-specific feature.
+
 ---
 
 ## Skills

@@ -25,6 +25,18 @@ New-Item "$HOME\.copilot\copilot-instructions.md"
 
 > I want to set up my global copilot-instructions.md. Interview me one question at a time about my preferences: languages, frameworks, indentation, cloud platforms, testing, databases, communication style, and anything else you think matters. Then generate the file.
 
+> **🔀 Tool Portability — Global Instructions**
+>
+> The concept is universal — every major AI tool has a "who I am" config file:
+>
+> | Tool | Equivalent |
+> |---|---|
+> | **Claude** | `~/CLAUDE.md` (global) or `CLAUDE.md` at the project root |
+> | **ChatGPT** | Custom Instructions (account level) or Project Instructions |
+> | **Cursor** | `~/.cursorrules` or `.cursorrules` in the project root |
+>
+> The principles are identical. Build it once — it transfers.
+
 ---
 
 ## Step 3 — Create a Dotfiles Repo (Sync Across Machines)
@@ -79,6 +91,19 @@ New-Item .github\copilot-instructions.md
 **Starter prompt for copilot-instructions.md:**
 
 > Read through this project's README, docs, and source code. Generate a .github/copilot-instructions.md that covers: project purpose, tech stack, folder structure, conventions, workflow, and what NOT to do.
+
+> **🔀 Tool Portability — AGENTS.md is the universal contract**
+>
+> `AGENTS.md` is deliberately model-agnostic — it's the one file that travels across tools:
+>
+> | Tool | Reads AGENTS.md? | Tool-specific equivalent |
+> |---|---|---|
+> | **GitHub Copilot** | ✅ Yes | `.github/copilot-instructions.md` |
+> | **Claude** | ✅ Yes | `CLAUDE.md` at the project root |
+> | **Cursor** | ✅ Yes | `.cursorrules` |
+> | **ChatGPT** | Not automatically | Copy key rules into Project Instructions |
+>
+> Keep your hard rules in `AGENTS.md`. Put tool-specific context in the tool-specific file.
 
 ---
 
@@ -163,6 +188,18 @@ Pick based on the task:
 | Complex / architecture | Heavy | Opus, GPT-5.3 Codex |
 
 > ⚠️ Models have **premium request multipliers**. Haiku costs ~0.25× per prompt, Opus costs ~5×. Check with `/model`.
+
+> **🔀 Tool Portability — Model Tiers**
+>
+> Every major AI tool has a cost tiering model. The discipline is the same across all of them:
+>
+> | Tier | GitHub Copilot | Claude | ChatGPT |
+> |---|---|---|---|
+> | Lightweight (0.25×) | Haiku, GPT mini | Claude Haiku | GPT-4o mini |
+> | Standard (1×) | Sonnet, main GPT | Claude Sonnet | GPT-4o |
+> | Heavy (5×) | Opus, GPT Codex | Claude Opus | GPT-4o with reasoning |
+>
+> The rule applies everywhere: use lightweight for reading and routine tasks, heavy only for deep architectural reasoning.
 
 ---
 

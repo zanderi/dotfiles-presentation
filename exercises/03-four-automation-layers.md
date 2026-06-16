@@ -61,6 +61,19 @@ If agents fired automatically at every commit:
 
 The design is correct. Layer 3 (agents) belongs in a session you open intentionally. Layer 4 (hooks) is the fast, automatic, cheap safety net.
 
+> **🔀 Tool Portability — Layer 1 (Instruction Files)**
+>
+> Instruction files are the most portable layer — the concept works across every AI tool:
+>
+> | Tool | Always-loaded global file | Always-loaded repo file |
+> |---|---|---|
+> | **GitHub Copilot** | `~/.copilot/copilot-instructions.md` | `AGENTS.md` + `.github/copilot-instructions.md` |
+> | **Claude** | `~/CLAUDE.md` | `CLAUDE.md` at project root |
+> | **ChatGPT** | Custom Instructions | Project Instructions |
+> | **Cursor** | `~/.cursorrules` | `.cursorrules` at project root |
+>
+> Layers 2–4 (skills, agents, hooks) are GitHub Copilot CLI-specific in their implementation. The *principle* of "semi-automatic, orchestrated, and mechanical" layers applies to any AI workflow.
+
 ---
 
 ## The GitFlow Integration — Correctly Mapped

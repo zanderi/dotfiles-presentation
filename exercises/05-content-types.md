@@ -24,6 +24,20 @@ By the end of this exercise, you will:
 | **Skill** | you need one stateless, single-purpose capability auto-invoked by description match | atomic, repeatable, deterministic | skill folder with `SKILL.md` + scripts |
 | **Prompt template** | you need a reusable starting point for consistent prompts | reusable text scaffold, not automation | wherever your team stores templates |
 
+> **🔀 Tool Portability — Content Types**
+>
+> These five content types are GitHub Copilot CLI-specific in their implementation. Other tools have overlapping but distinct concepts:
+>
+> | Copilot content type | Claude equivalent | ChatGPT equivalent |
+> |---|---|---|
+> | **Agent** (`.agent.md`) | Claude Projects with custom instructions | Custom GPT |
+> | **Workflow Agent** | Chained prompts or Claude Projects | ChatGPT Action sequences |
+> | **Instruction file** | `CLAUDE.md` / `AGENTS.md` | Project Instructions |
+> | **Skill** (`SKILL.md`) | No direct equivalent | No direct equivalent |
+> | **Prompt template** | Saved prompts | Saved prompts |
+>
+> The decision tree in this exercise applies to any AI toolchain — only the file format and invocation mechanism differ by tool.
+
 ### 1. Agent
 Use an **agent** when the content needs judgment, multiple steps, a point of view, hard boundaries, or the ability to orchestrate specialists. An agent is not just a canned command. It is a role.
 

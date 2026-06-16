@@ -67,6 +67,19 @@ graph TD
 
 **Key point:** This file is *local to your machine*. To sync it across computers, keep it in a dotfiles repo and symlink it.
 
+> **🔀 Tool Portability — Global Personal Config**
+>
+> Every major AI tool has a personal config file that loads automatically:
+>
+> | Tool | File | Location |
+> |---|---|---|
+> | **GitHub Copilot** | `copilot-instructions.md` | `~/.copilot/` |
+> | **Claude** | `CLAUDE.md` | `~/` (home directory) |
+> | **ChatGPT** | Custom Instructions | Account settings |
+> | **Cursor** | `.cursorrules` | `~/` or project root |
+>
+> The dotfiles + symlink pattern described below works for all of them — version the file, symlink on each machine.
+
 ```
 📂 ~/dotfiles/
 ├── .copilot/
@@ -90,6 +103,10 @@ These files live in the repository and are shared with the whole team via git.
 #### `AGENTS.md` (repo root)
 
 **Purpose:** Critical rules any AI agent must follow. Model-agnostic — works with Copilot, Claude, Cursor, etc.
+
+> **🔀 Tool Portability — AGENTS.md is the universal contract**
+>
+> `AGENTS.md` is the one instruction file that travels across every tool. GitHub Copilot reads it, Claude reads it, Cursor reads it — any AI coding assistant that follows the convention picks it up. Everything that must apply regardless of which tool is active belongs here. Tool-specific context (the full project walkthrough, Copilot-specific instructions) lives in the tool-specific file alongside it.
 
 **Best for:**
 - Hard rules and constraints ("never do X")
