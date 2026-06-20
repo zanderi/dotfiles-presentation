@@ -31,13 +31,13 @@ voiceover regeneration. Two independent reasons a scene lands here:
 > the single source of truth, and `generate-voiceover-lesson1.ts` reads from it. Brought in from
 > the fork: cross-platform `scene-04` script (+ matching `PlatformPaths` slide callout) and the
 > `scene-15` Portability scene. Kept from src: this session's `scene-07` (steps 5+6) and `scene-10`
-> (version-less). Applied the `scene-06` tool-config TTS edit. **Audio regen needed for scene-06,
-> scene-07, scene-10 only** (04 & 15 already match the existing fork-generated MP3s; all others
-> unchanged). Type-clean (tsc/eslint).
+> (version-less). Applied the `scene-06` tool-config TTS edit. **Audio regenerated ✅ for
+> scene-06/07/10** (2026-06-20; 04 & 15 already matched the existing fork-generated MP3s; all others
+> unchanged). Type-clean (tsc/eslint). **Re-render of `out/lesson-1.mp4` still pending.**
 
 | Scene | Reason | Status | Suggested script direction |
 |---|---|---|---|
-| `scene-10` Models | 🎬 | ✍️ | **Script rewritten** in `voiceover-config.ts` — version-less names, all three providers per tier. Audio regen pending. (Draft text below.) |
+| `scene-10` Models | 🎬 | ✅ | **Script rewritten** in `voiceover-config.ts` — version-less names, all three providers per tier. Audio regenerated 2026-06-20. (Draft text below.) |
 | `scene-09` MCP | 🎬 | ⬜ | Audio says "GitHub MCP server is built-in — no configuration needed." Slide reframed MCP as an open standard + notes the GitHub server is bundled *only* in Copilot (Claude/Cursor add it manually). Reframe lead + add the bundling caveat. |
 | `scene-13` Fleet | 🎬 | ⬜ | Copilot-only. Slide added a cross-tool callout. Add one aside: parallel agents exist in Claude (subagents via the Task tool) and Cursor (Background Agents). |
 | `scene-08` Agents | 🎬 (optional) | ⬜ | Copilot-only (`/agent`, `.agent.md`). Slide now shows all three creation methods. Optional aside naming Claude `/agents` + Cursor rules. |
@@ -155,13 +155,14 @@ Tokens the TTS voice mispronounces or spells out awkwardly. Fix during the same 
 | L10 BusinessEcosystem | scene-04 | `CHANGELOG.md` 🔴 |
 | L0 UpgradeGuide / L11 | scene-01/03 | `MCP` 🟡 only |
 
-> **✅ 🔴 sweep applied (2026-06-20).** All high-confidence in-text conversions applied across
-> **L2, L3, L5, L6, L7, L8, L10** (13 edits, script-only → status ✍️, audio regen pending). 🟡
+> **✅ 🔴 sweep applied + audio regenerated (2026-06-20).** All high-confidence in-text
+> conversions applied across **L2, L3, L5, L6, L7, L8, L10** (13 edits) and the affected scenes'
+> MP3s regenerated via `scripts/generate-voiceover-regen.ts` (George + pronunciation module). 🟡
 > tokens left for judgment against the George voice. Exceptions:
 > - **L1** — ✅ *resolved via consolidation* (see the Lesson 1 section above). The `src/` vs
 >   `lessons/` fork was retired; `src/` is canonical. `scene-04` adopted the cross-platform script
 >   (no `async/await` to convert) and `scene-06` got the `tsconfig`/`prettierrc`→spoken edit. Audio
->   regen pending for scene-06/07/10.
+>   regenerated ✅ for scene-06/07/10 (2026-06-20).
 > - **L4 `RAG`** — false positive: appears only in the on-screen label "Learners and RAG", never in
 >   the narration. No script change.
 > - **L9** — already regenerated & verified ✅ this session; left untouched to preserve verified audio.
