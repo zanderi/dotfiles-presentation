@@ -21,6 +21,7 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { VOICEOVER_SCENES } from "../src/lessons/lesson-1-ai-env-setup/voiceover-config.ts";
+import { applyPronunciation } from "./tts-pronunciation.ts";
 
 const API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? "JBFqnCBsd6RMkjVDRZzb"; // George
@@ -53,7 +54,7 @@ for (const scene of VOICEOVER_SCENES) {
           Accept: "audio/mpeg",
         },
         body: JSON.stringify({
-          text: scene.script,
+          text: applyPronunciation(scene.script),
           model_id: "eleven_multilingual_v2",
           voice_settings: {
             stability: 0.5,

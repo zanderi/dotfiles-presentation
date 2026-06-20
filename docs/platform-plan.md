@@ -1103,7 +1103,7 @@ Priority order: fix the bugs first, then add new material. A learner hitting a b
 
 The Remotion setup is solid. For future lessons:
 
-- **Lesson 1 voice:** Standard ElevenLabs (Adam) — good default for instructional content
+- **Lesson 1 voice:** Standard ElevenLabs (George) — good default for instructional content
 - **Lesson 2 voice:** John Wayne — distinctive but may not fit all future topics; use for retrospective/opinion content only
 - **Lesson 3+ voice:** Return to standard professional voice for demo content
 

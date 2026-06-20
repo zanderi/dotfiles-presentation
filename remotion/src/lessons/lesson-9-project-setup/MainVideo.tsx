@@ -10,6 +10,7 @@ import { GeneratingDocsScene } from "./scenes/03-GeneratingDocsScene";
 import { ProjectInstructionsScene } from "./scenes/04-ProjectInstructionsScene";
 import { DesignSystemFirstScene } from "./scenes/05-DesignSystemFirstScene";
 import { FeatureSpecsScene } from "./scenes/06-FeatureSpecsScene";
+import { SetupFilesScene } from "./scenes/12-SetupFilesScene";
 import { FleetBuildPlanScene } from "./scenes/07-FleetBuildPlanScene";
 import { PlanModePrereqsScene } from "./scenes/08-PlanModePrereqsScene";
 import { RunningFleetScene } from "./scenes/09-RunningFleetScene";
@@ -29,6 +30,7 @@ const SCENES = [
 	ProjectInstructionsScene,
 	DesignSystemFirstScene,
 	FeatureSpecsScene,
+	SetupFilesScene,
 	FleetBuildPlanScene,
 	PlanModePrereqsScene,
 	RunningFleetScene,
@@ -45,7 +47,7 @@ export const MainVideo: React.FC<MainVideoProps> = ({ sceneDurations }) => (
 				<React.Fragment key={vo.id}>
 					<TransitionSeries.Sequence durationInFrames={duration}>
 						<SceneComponent />
-						{AUDIO_ENABLED && (
+						{AUDIO_ENABLED && !("noAudio" in vo && vo.noAudio) && (
 							<Audio src={staticFile(`voiceover/lesson-9/${vo.id}.mp3`)} />
 						)}
 					</TransitionSeries.Sequence>

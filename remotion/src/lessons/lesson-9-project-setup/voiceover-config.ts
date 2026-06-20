@@ -16,14 +16,14 @@ export const VOICEOVER_SCENES = [
 		label: "Title",
 		estimatedFrames: 750,
 		script:
-			"Welcome to Lesson Nine — Project Setup. The biggest mistake in AI-assisted development is starting with code. This lesson covers the twenty-two documents you generate before writing a single line of app code — and why that upfront investment eliminates the fifty percent rework tax.",
+			"Welcome to Lesson Nine — Project Setup. The biggest mistake in AI-assisted development is starting with code. This lesson covers the twenty or so documents you generate before writing a single line of app code — and why that upfront investment eliminates the fifty percent rework tax.",
 	},
 	{
 		id: "scene-01",
 		label: "Before Any Code",
 		estimatedFrames: 956,
 		script:
-			"Reactive prompting — jumping straight into writing code with AI — leads to 50% more rework than upfront design investment. The first thing you generate with AI should not be app code. It should be the documents that describe what the app code will do, who will use it, how it should look, and what the non-negotiables are. Twenty-two files before one line of app code. That's the investment.",
+			"Reactive prompting — jumping straight into writing code with AI — leads to 50% more rework than upfront design investment. The first thing you generate with AI should not be app code. It should be the documents that describe what the app code will do, who will use it, how it should look, and what the non-negotiables are. Around twenty files before one line of app code. That's the investment.",
 	},
 	{
 		id: "scene-02",
@@ -61,11 +61,18 @@ export const VOICEOVER_SCENES = [
 			"Write feature specifications before implementing features. Not detailed enough to be code — specific enough to be unambiguous. What does the feature do? What are the edge cases? What does success look like? What does failure look like? A feature spec is what separates \"build me a login form\" from \"build me a login form that does exactly this.\" The spec is the contract.",
 	},
 	{
+		id: "scene-12",
+		label: "The Setup Files",
+		estimatedFrames: 800,
+		script:
+			"So what are these files? At the root, a README and a fleet plan. A docs folder — tech stack, architecture, data model, design system, and more. A few contributor guides. Your project instructions and config. And one specification per feature. Around twenty documents for a typical project — and the feature specs scale with your feature count, so the total grows with the app.",
+	},
+	{
 		id: "scene-07",
 		label: "Fleet Build Plan",
 		estimatedFrames: 901,
 		script:
-			"For a new project, fleet is the right tool for the initial build. The first 22 files are largely independent — they don't depend on each other. Fleet dispatches them in parallel. Wave 1: README, architecture, tech stack docs. Wave 2: design system, component library decisions, data model. Wave 3: feature specs, instruction files, agent setup. Sequential dependency requires sequential waves. Independent work gets parallelized.",
+			"You've seen the files — now the build order. For a new project, fleet is the right tool for the initial build. Most of these files are independent — they don't depend on each other — so fleet builds them in parallel, in waves. Wave 1: README, architecture, tech stack docs. Wave 2: design system, component decisions, data model. Wave 3: feature specs, instruction files, agent setup. Sequential dependency requires sequential waves. Independent work gets parallelized.",
 	},
 	{
 		id: "scene-08",
@@ -93,7 +100,7 @@ export const VOICEOVER_SCENES = [
 		label: "Closing",
 		estimatedFrames: 901,
 		script:
-			"Twenty-two files before one line of app code. That's the investment that prevents the 50% rework tax. The project instructions, the design system, the feature specs — these are not overhead. They are the infrastructure that makes AI generation reliable and consistent. Exercise 9 walks you through the full setup sequence. Start with the problem statement. End with a fleet plan that builds everything else.",
+			"Around twenty files before one line of app code. That's the investment that prevents the 50% rework tax. The project instructions, the design system, the feature specs — these are not overhead. They are the infrastructure that makes AI generation reliable and consistent. Exercise 9 walks you through the full setup sequence. Start with the problem statement. End with a fleet plan that builds everything else.",
 	},
 ] as const;
 

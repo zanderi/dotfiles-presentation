@@ -13,7 +13,7 @@ export const BuildFeedbackScene: React.FC = () => {
 			<div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 24, marginTop: 16 }}>
 				<CodeBlock
 					delay={0}
-					code={`---\nname: code-reviewer\ndescription: "Use when reviewing code before a PR"\ntools: ['grep', 'glob', 'view']\n---\n\n## Hard Rules\n- Only genuine issues — no style nitpicks\n- Severity-labeled findings\n- No empty praise`}
+					code={`---\nname: code-reviewer\ndescription: "Use when reviewing code before a PR"\nmodel: sonnet\ntools: ['grep', 'glob', 'view']\n---\n\n## Hard Rules\n- Only genuine issues — no style nitpicks\n- Severity-labeled findings\n- No empty praise`}
 				/>
 				<BulletList
 					delay={35}

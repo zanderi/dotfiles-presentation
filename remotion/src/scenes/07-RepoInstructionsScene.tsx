@@ -26,6 +26,7 @@ export const RepoInstructionsScene: React.FC = () => {
           body="Critical rules, model-agnostic. Works with any AI tool."
           color={COLORS.orange}
           delay={20}
+          universal
         />
         <InfoCard
           icon="🤖"
@@ -33,6 +34,10 @@ export const RepoInstructionsScene: React.FC = () => {
           body="Full project context: stack, conventions, patterns."
           color={COLORS.blue}
           delay={35}
+          parallels={[
+            { platform: "Claude", path: "CLAUDE.md", color: COLORS.purple },
+            { platform: "Cursor", path: ".cursorrules", color: COLORS.orange },
+          ]}
         />
         <InfoCard
           icon="📁"
@@ -40,6 +45,18 @@ export const RepoInstructionsScene: React.FC = () => {
           body="Task-specific deep dives. Loaded alongside main instructions."
           color={COLORS.green}
           delay={50}
+          parallels={[
+            {
+              platform: "Claude",
+              path: "nested CLAUDE.md",
+              color: COLORS.purple,
+            },
+            {
+              platform: "Cursor",
+              path: ".cursor/rules/*",
+              color: COLORS.orange,
+            },
+          ]}
         />
       </div>
     </SceneFrame>

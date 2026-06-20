@@ -22,7 +22,7 @@ export const FleetBuildPlanScene: React.FC = () => {
 
 	return (
 		<SceneFrame accentColor={COLORS.blue}>
-			<Headline text="22 Files in Waves" size="lg" delay={0} />
+			<Headline text="Building in Waves" size="lg" delay={0} />
 
 			<div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 20, marginTop: 32 }}>
 				{WAVES.map((wave) => (

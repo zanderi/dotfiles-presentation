@@ -66,6 +66,37 @@ export const FleetScene: React.FC = () => {
             },
           ]}
         />
+
+        <div
+          style={{
+            marginTop: 4,
+            padding: 20,
+            background: COLORS.surface,
+            border: `1px solid ${COLORS.border}`,
+            borderRadius: 8,
+            fontFamily: FONT,
+            fontSize: 19,
+            lineHeight: 1.5,
+            color: COLORS.muted,
+            opacity: interpolate(frame, [90, 105], [0, 1], {
+              extrapolateRight: "clamp",
+              extrapolateLeft: "clamp",
+              easing: EASE_OUT,
+            }),
+          }}
+        >
+          🔀{" "}
+          <span style={{ color: COLORS.text, fontWeight: 700 }}>
+            Not Copilot-only.
+          </span>{" "}
+          <span style={{ color: COLORS.purple, fontWeight: 700 }}>
+            Claude Code
+          </span>{" "}
+          spawns concurrent subagents (the Task tool);{" "}
+          <span style={{ color: COLORS.orange, fontWeight: 700 }}>Cursor</span>{" "}
+          runs Background Agents. The command differs — the pattern, isolated
+          parallel scopes, is the same.
+        </div>
       </div>
     </SceneFrame>
   );

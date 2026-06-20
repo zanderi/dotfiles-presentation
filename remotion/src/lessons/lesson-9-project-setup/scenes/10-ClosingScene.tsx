@@ -24,7 +24,7 @@ export const ClosingScene: React.FC = () => {
 		<SceneFrame accentColor={COLORS.blue}>
 			<div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 32 }}>
 				<div style={{ opacity: fadeIn(0), transform: `scale(${scale(0)})`, fontFamily: FONT, fontSize: 52, fontWeight: 900, color: COLORS.text, textAlign: "center" as const }}>
-					22 files before one line of app code.
+					~20 files before one line of app code.
 				</div>
 				<div style={{ opacity: fadeIn(25), fontFamily: FONT, fontSize: 24, color: COLORS.muted, textAlign: "center" as const, maxWidth: 900, lineHeight: 1.6 }}>
 					That's the investment that prevents the 50% rework tax.

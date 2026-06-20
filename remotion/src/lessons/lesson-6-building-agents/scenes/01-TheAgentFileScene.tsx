@@ -13,15 +13,15 @@ export const TheAgentFileScene: React.FC = () => {
 			<div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 24, marginTop: 24 }}>
 				<CodeBlock
 					delay={10}
-					code={`---\nname: my-agent\ndescription: "Use this when you need to..."\ntools: ['grep', 'glob', 'view']\n---\n\n## Instructions\n...`}
+					code={`---\nname: my-agent\ndescription: "Use this when you need to..."\nmodel: sonnet\ntools: ['grep', 'glob', 'view']\n---\n\n## Instructions\n...`}
 				/>
 
 				<BulletList
 					delay={40}
 					items={[
-						{ text: "No compiled code. No deployment.", color: COLORS.muted },
-						{ text: "No infrastructure.", color: COLORS.muted },
-						{ text: "Four fields: name, description, tools, body", color: COLORS.yellow },
+						{ text: "No compiled code. No deployment. No infrastructure.", color: COLORS.muted },
+						{ text: "model — match the engine to the job (Haiku for light, Opus for heavy)", color: COLORS.blue },
+						{ text: "Five fields: name, description, model, tools, body", color: COLORS.yellow },
 					]}
 				/>
 			</div>

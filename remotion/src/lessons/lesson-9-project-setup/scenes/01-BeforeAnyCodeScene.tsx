@@ -31,7 +31,7 @@ export const BeforeAnyCodeScene: React.FC = () => {
 					right={
 						<div style={{ background: `${COLORS.green}15`, border: `2px solid ${COLORS.green}`, borderRadius: 12, padding: 24, height: "100%", display: "flex", flexDirection: "column", gap: 16 }}>
 							<div style={{ fontFamily: FONT, fontSize: 20, color: COLORS.green }}>✅ Upfront Design Investment</div>
-							<div style={{ fontFamily: FONT, fontSize: 17, color: COLORS.muted, lineHeight: 1.5 }}>22 documents before one line of app code</div>
+							<div style={{ fontFamily: FONT, fontSize: 17, color: COLORS.muted, lineHeight: 1.5 }}>~20 documents before one line of app code</div>
 							<div style={{ opacity: fadeIn(35), fontFamily: FONT, fontSize: 22, color: COLORS.green, fontWeight: 700 }}>Consistent output, less rework</div>
 						</div>
 					}
@@ -39,7 +39,7 @@ export const BeforeAnyCodeScene: React.FC = () => {
 			</div>
 
 			<div style={{ opacity: fadeIn(50), fontFamily: FONT, fontSize: 24, fontWeight: 700, color: COLORS.text, textAlign: "center" as const, marginTop: 24 }}>
-				22 files before one line of app code
+				~20 files before one line of app code
 			</div>
 		</SceneFrame>
 	);

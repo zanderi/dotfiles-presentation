@@ -1,7 +1,7 @@
 # Lesson 7 — Workflow Agents & GitFlow: Quick Reference
 
 **Status:** In development (scenes not yet authored)  
-**Voice:** Adam (ElevenLabs `pNInz6obpgDQGcFmaJgB`)  
+**Voice:** George (ElevenLabs `JBFqnCBsd6RMkjVDRZzb`)  
 **Model:** `eleven_multilingual_v2`  
 **Voice settings:** stability 0.5, similarity_boost 0.75, style 0.3  
 **Frame rate:** 30fps  

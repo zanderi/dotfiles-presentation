@@ -79,7 +79,7 @@ export const VOICEOVER_SCENES = [
     label: "Models",
     estimatedFrames: 1050,
     script:
-      "Step nine. Model selection. Not all tasks need the same level of horsepower, and models carry premium multipliers that affect your budget. Lightweight models like Haiku and GPT-4.1 cost about a quarter of the standard rate — great for simple, repetitive tasks. Standard models like Sonnet and GPT-5.2 are the sweet spot for most daily work. Heavy models like Opus are worth the investment for complex architecture or deep analysis. Switch anytime with slash model.",
+      "Step nine. Model selection. Not all tasks need the same horsepower, and heavier models carry premium multipliers that affect your budget. Every provider offers the same three tiers. Lightweight models — like Haiku, GPT mini, or Gemini Flash — cost about a quarter of the standard rate, great for simple, repetitive tasks. Standard models — like Sonnet, GPT, or Gemini Pro — are the sweet spot for most daily work. And heavy models — like Opus, GPT Codex, or Gemini Deep Think — are worth it for complex architecture or deep analysis. Switch anytime with slash model.",
   },
   {
     id: "scene-11",

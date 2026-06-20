@@ -54,10 +54,11 @@ export const VerifyScene: React.FC = () => {
       <div
         style={{
           flex: 1,
+          minHeight: 0,
           display: "flex",
           flexDirection: "row",
           gap: 60,
-          marginTop: 28,
+          marginTop: 18,
         }}
       >
         {/* LEFT — Commands */}
@@ -66,7 +67,7 @@ export const VerifyScene: React.FC = () => {
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            gap: 14,
+            gap: 12,
           }}
         >
           {commands.map((item, i) => (
@@ -100,19 +101,20 @@ export const VerifyScene: React.FC = () => {
         <div
           style={{
             flex: 1,
+            minHeight: 0,
             display: "flex",
             flexDirection: "column",
-            gap: 20,
+            gap: 14,
           }}
         >
           <div
             style={{
               ...fadeSlide(frame, 10),
               fontFamily: FONT,
-              fontSize: 32,
+              fontSize: 26,
               fontWeight: 700,
               color: COLORS.blue,
-              marginBottom: 8,
+              marginBottom: 2,
             }}
           >
             Modes
@@ -124,6 +126,8 @@ export const VerifyScene: React.FC = () => {
             body="Default, step-by-step"
             color={COLORS.text}
             delay={20}
+            grow={false}
+            horizontal
           />
           <InfoCard
             icon="🗺️"
@@ -131,6 +135,8 @@ export const VerifyScene: React.FC = () => {
             body="Shift+Tab, map before building"
             color={COLORS.yellow}
             delay={30}
+            grow={false}
+            horizontal
           />
           <InfoCard
             icon="🤖"
@@ -138,6 +144,8 @@ export const VerifyScene: React.FC = () => {
             body="Shift+Tab×2, autonomous"
             color={COLORS.blue}
             delay={40}
+            grow={false}
+            horizontal
           />
           <InfoCard
             icon="🚀"
@@ -145,6 +153,8 @@ export const VerifyScene: React.FC = () => {
             body="/fleet, parallel subagents"
             color={COLORS.purple}
             delay={50}
+            grow={false}
+            horizontal
           />
         </div>
       </div>
@@ -153,12 +163,13 @@ export const VerifyScene: React.FC = () => {
         style={{
           opacity: finalOpacity,
           transform: `translateY(${finalY}px)`,
+          flexShrink: 0,
           fontFamily: FONT,
-          fontSize: 28,
+          fontSize: 24,
           fontWeight: 700,
           color: COLORS.green,
           textAlign: "center",
-          marginTop: 16,
+          marginTop: 10,
         }}
       >
         ✅ You're ready. Go build something incredible.

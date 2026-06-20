@@ -13,7 +13,7 @@ export const BuildGuardianScene: React.FC = () => {
 			<div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 24, marginTop: 16 }}>
 				<CodeBlock
 					delay={0}
-					code={`---\nname: env-config-reviewer\ndescription: "Use when checking for exposed secrets"\ntools: ['grep', 'glob', 'view']\n---\n\n## Hard Rules\n- Never modify files. Report only.\n## Checks\n- .gitignore coverage\n- Hardcoded credential patterns`}
+					code={`---\nname: env-config-reviewer\ndescription: "Use when checking for exposed secrets"\nmodel: haiku\ntools: ['grep', 'glob', 'view']\n---\n\n## Hard Rules\n- Never modify files. Report only.\n## Checks\n- .gitignore coverage\n- Hardcoded credential patterns`}
 				/>
 				<BulletList
 					delay={35}
