@@ -65,7 +65,7 @@ export const VOICEOVER_SCENES = [
     label: "Build a Guardian Agent",
     estimatedFrames: 748,
     script:
-      "Now env-config-reviewer. Description: \"Use this agent to verify that no secrets, credentials, or environment-specific values have been committed or are at risk of being committed.\" Tools: grep, glob, view. Hard rules: never modify files — report only. Check .gitignore coverage. Flag hardcoded credential patterns. Output: clear, at-risk, or critical per file. That's a guardian.",
+      "Now env-config-reviewer. Description: \"Use this agent to verify that no secrets, credentials, or environment-specific values have been committed or are at risk of being committed.\" Tools: grep, glob, view. Hard rules: never modify files — report only. Check your git-ignore file coverage. Flag hardcoded credential patterns. Output: clear, at-risk, or critical per file. That's a guardian.",
   },
   {
     id: "scene-08",

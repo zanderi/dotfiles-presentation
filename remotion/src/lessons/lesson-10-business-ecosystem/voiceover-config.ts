@@ -65,7 +65,7 @@ export const VOICEOVER_SCENES = [
     label: "Tool Operators",
     estimatedFrames: 735,
     script:
-      "Business tool operators push artifacts into systems. github-issue-creator translates findings into tracked issues. changelog-writer pushes version entries into CHANGELOG.md. pr-description-writer bridges the dev and business pipelines — a PR description is both a technical artifact and a stakeholder communication. Tool operators are why the business pipeline's output reaches the people who need it.",
+      "Business tool operators push artifacts into systems. github-issue-creator translates findings into tracked issues. changelog-writer pushes version entries into your changelog file. pr-description-writer bridges the dev and business pipelines — a PR description is both a technical artifact and a stakeholder communication. Tool operators are why the business pipeline's output reaches the people who need it.",
   },
   {
     id: "scene-08",

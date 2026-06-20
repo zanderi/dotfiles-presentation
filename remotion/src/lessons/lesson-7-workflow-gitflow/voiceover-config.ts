@@ -37,7 +37,7 @@ export const VOICEOVER_SCENES = [
     label: "Commit-Msg Hook",
     estimatedFrames: 804,
     script:
-      "The commit-msg hook validates conventional commit format. The regex is simple: type, optional scope in parentheses, colon, space, description. feat, fix, refactor, docs, test, chore, style. If it doesn't match, the commit is rejected with a clear error. This is the hook that enforces the commit convention that makes changelogs, release notes, and semantic versioning work automatically downstream.",
+      "The commit-msg hook validates conventional commit format. The regular expression is simple: type, optional scope in parentheses, colon, space, description. feat, fix, refactor, docs, test, chore, style. If it doesn't match, the commit is rejected with a clear error. This is the hook that enforces the commit convention that makes changelogs, release notes, and semantic versioning work automatically downstream.",
   },
   {
     id: "scene-04",

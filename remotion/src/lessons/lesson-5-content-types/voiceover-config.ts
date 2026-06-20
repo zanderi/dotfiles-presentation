@@ -58,7 +58,7 @@ export const VOICEOVER_SCENES = [
     label: "Skill",
     estimatedFrames: 748,
     script:
-      "A skill matches a description and executes. When your prompt matches, it fires. It can run scripts. It's stateless — no memory, no reasoning, no judgment. A validate-commit-message skill fires when you say \"validate my commit\" and runs a regex check. That's it. Simple, automatic, reliable. Use skills for single-purpose tasks that benefit from auto-invocation.",
+      "A skill matches a description and executes. When your prompt matches, it fires. It can run scripts. It's stateless — no memory, no reasoning, no judgment. A validate-commit-message skill fires when you say \"validate my commit\" and runs a regular expression check. That's it. Simple, automatic, reliable. Use skills for single-purpose tasks that benefit from auto-invocation.",
   },
   {
     id: "scene-07",

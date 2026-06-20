@@ -146,9 +146,18 @@ Tokens the TTS voice mispronounces or spells out awkwardly. Fix during the same 
 | L10 BusinessEcosystem | scene-04 | `CHANGELOG.md` 🔴 |
 | L0 UpgradeGuide / L11 | scene-01/03 | `MCP` 🟡 only |
 
-> **Not yet auto-applied.** This is the discovery pass you asked for. When you're ready,
-> I can do one sweep applying all 🔴 glossary conversions across every script (leaving 🟡 for
-> you to judge against the actual voice), updating each affected scene's tracker row to ✍️.
+> **✅ 🔴 sweep applied (2026-06-20).** All high-confidence in-text conversions applied across
+> **L2, L3, L5, L6, L7, L8, L10** (13 edits, script-only → status ✍️, audio regen pending). 🟡
+> tokens left for judgment against the George voice. Exceptions:
+> - **L1** — *deferred*: the two L1 configs (`src/voiceover-config.ts` vs
+>   `lessons/lesson-1-ai-env-setup/voiceover-config.ts`) have **diverged** (cross-platform rewrite
+>   only in the `lessons/` copy; `async/await` only in the `src/` copy). Resolve which is canonical
+>   before applying the `async/await`→"async-await" and `tsconfig`/`prettierrc`→spoken edits.
+> - **L4 `RAG`** — false positive: appears only in the on-screen label "Learners and RAG", never in
+>   the narration. No script change.
+> - **L9** — already regenerated & verified ✅ this session; left untouched to preserve verified audio.
+>   Its `*-instructions.md` path mentions can be folded into a future L9 regen if desired.
+> - **L7 scene-05** — script says "the CI workflow", not "CI/CD" (that's the slide label only). No change.
 
 ### Generation-time pronunciation *(don't respell these in the script — fix at TTS time)*
 

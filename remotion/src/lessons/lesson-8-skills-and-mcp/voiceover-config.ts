@@ -30,14 +30,14 @@ export const VOICEOVER_SCENES = [
     label: "Skills Structure",
     estimatedFrames: 915,
     script:
-      "A skill is a directory with a SKILL.md file and optionally one or more scripts. The SKILL.md defines the name, description, tools, and the instruction body. The description field controls when it fires — same principle as agents. The scripts are what give skills teeth: they can run shell commands, call APIs, validate input. A skill is lighter than an agent but heavier than an instruction file.",
+      "A skill is a directory with a skill dot md file and optionally one or more scripts. The skill dot md file defines the name, description, tools, and the instruction body. The description field controls when it fires — same principle as agents. The scripts are what give skills teeth: they can run shell commands, call APIs, validate input. A skill is lighter than an agent but heavier than an instruction file.",
   },
   {
     id: "scene-03",
     label: "Skills Description",
     estimatedFrames: 776,
     script:
-      "The description field in SKILL.md is the trigger. When your prompt matches the description, the CLI routes to the skill. Write it as trigger phrases, not capability lists. \"Use this when validating a commit message\" fires reliably. \"Validates commit messages according to conventional commit format\" is a capability statement — it fires less predictably. The distinction matters.",
+      "The description field in the skill dot md file is the trigger. When your prompt matches the description, the CLI routes to the skill. Write it as trigger phrases, not capability lists. \"Use this when validating a commit message\" fires reliably. \"Validates commit messages according to conventional commit format\" is a capability statement — it fires less predictably. The distinction matters.",
   },
   {
     id: "scene-04",
@@ -51,14 +51,14 @@ export const VOICEOVER_SCENES = [
     label: "Skill Security",
     estimatedFrames: 998,
     script:
-      "Before you enable any skill from an external source, read every line of SKILL.md and every script it references. Look for unexpected network calls, obfuscated strings, file writes outside the project directory, and shell commands that request elevated permissions. A skill that runs shell commands has the same access to your machine as you do. There is no sandbox. Treat external skills the same way you treat a script someone emails you.",
+      "Before you enable any skill from an external source, read every line of the skill dot md file and every script it references. Look for unexpected network calls, obfuscated strings, file writes outside the project directory, and shell commands that request elevated permissions. A skill that runs shell commands has the same access to your machine as you do. There is no sandbox. Treat external skills the same way you treat a script someone emails you.",
   },
   {
     id: "scene-06",
     label: "Build a Skill",
     estimatedFrames: 776,
     script:
-      "Build validate-commit-message. Create the directory at ~/.copilot/skills/validate-commit-message/. Write SKILL.md: name is validate-commit-message, description is the trigger phrase, tools include shell or echo, body describes what to validate. Write validate.sh: a regex check against conventional commit format that exits 1 on failure with a clear error message. Run /skills reload. Trigger it naturally in a prompt. Done.",
+      "Build validate-commit-message. Create the directory in your home folder, under dot copilot, skills, validate-commit-message. Write the skill dot md file: name is validate-commit-message, description is the trigger phrase, tools include shell or echo, body describes what to validate. Write the validate shell script: a regular expression check against conventional commit format that exits 1 on failure with a clear error message. Run /skills reload. Trigger it naturally in a prompt. Done.",
   },
   {
     id: "scene-07",
@@ -79,7 +79,7 @@ export const VOICEOVER_SCENES = [
     label: "Adding MCP Servers",
     estimatedFrames: 748,
     script:
-      "Run /mcp add to add a new MCP server. Three good starting points: filesystem MCP for accessing files outside the repo, Jira MCP for reading and writing tickets, Sentry MCP for reading error reports. Per-user config at ~/.copilot/mcp.json covers tools you always want. Per-project config at .copilot/mcp.json covers project-specific integrations. Scope your servers correctly.",
+      "Run /mcp add to add a new MCP server. Three good starting points: filesystem MCP for accessing files outside the repo, Jira MCP for reading and writing tickets, Sentry MCP for reading error reports. Per-user config in your MCP config file, in the dot-copilot folder in your home directory, covers tools you always want. Per-project config in the project's own MCP config file covers project-specific integrations. Scope your servers correctly.",
   },
   {
     id: "scene-10",
