@@ -5,20 +5,10 @@ import { SceneFrame } from "../components/SceneFrame";
 import { StepBadge } from "../components/StepBadge";
 import { Headline } from "../components/Headline";
 import { BulletList } from "../components/BulletList";
+import { PlatformPaths } from "../components/PlatformPaths";
 
 export const GlobalInstructionsScene: React.FC = () => {
   const frame = useCurrentFrame();
-
-  const pathOpacity = interpolate(frame, [15, 30], [0, 1], {
-    extrapolateRight: "clamp",
-    extrapolateLeft: "clamp",
-    easing: EASE_OUT,
-  });
-  const pathY = interpolate(frame, [15, 35], [20, 0], {
-    extrapolateRight: "clamp",
-    extrapolateLeft: "clamp",
-    easing: EASE_OUT,
-  });
 
   return (
     <SceneFrame>
@@ -34,17 +24,31 @@ export const GlobalInstructionsScene: React.FC = () => {
           marginTop: 32,
         }}
       >
-        <div
-          style={{
-            opacity: pathOpacity,
-            transform: `translateY(${pathY}px)`,
-            fontFamily: "monospace",
-            fontSize: 26,
-            color: COLORS.blue,
-          }}
-        >
-          ~/.copilot/copilot-instructions.md
-        </div>
+        <PlatformPaths
+          delay={15}
+          paths={[
+            {
+              platform: "Copilot",
+              path: "~/.copilot/copilot-instructions.md",
+              color: COLORS.blue,
+            },
+            {
+              platform: "Claude",
+              path: "~/.claude/CLAUDE.md",
+              color: COLORS.purple,
+            },
+            {
+              platform: "Cursor",
+              path: "~/.cursorrules",
+              color: COLORS.orange,
+            },
+            {
+              platform: "ChatGPT",
+              path: "Project Instructions",
+              color: COLORS.green,
+            },
+          ]}
+        />
 
         <BulletList
           delay={30}
@@ -86,9 +90,9 @@ export const GlobalInstructionsScene: React.FC = () => {
             }),
           }}
         >
-          💡 This file defines who Copilot is for{" "}
+          💡 This file defines who your AI assistant is for{" "}
           <span style={{ color: COLORS.text, fontWeight: 700 }}>you</span>{" "}
-          — across every project, every session.
+          — across every project, every tool, every session.
         </div>
       </div>
     </SceneFrame>

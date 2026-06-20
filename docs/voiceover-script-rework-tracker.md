@@ -26,6 +26,15 @@ voiceover regeneration. Two independent reasons a scene lands here:
 
 ## Lesson 1 — AIEnvSetup *(scripts already use spoken-form paths — no TTS issue)*
 
+> **✅ L1 config consolidated (2026-06-20).** The duplicate `lessons/lesson-1-ai-env-setup/`
+> fork has been retired. `src/voiceover-config.ts` + `src/scenes/` + `src/MainVideo.tsx` are now
+> the single source of truth, and `generate-voiceover-lesson1.ts` reads from it. Brought in from
+> the fork: cross-platform `scene-04` script (+ matching `PlatformPaths` slide callout) and the
+> `scene-15` Portability scene. Kept from src: this session's `scene-07` (steps 5+6) and `scene-10`
+> (version-less). Applied the `scene-06` tool-config TTS edit. **Audio regen needed for scene-06,
+> scene-07, scene-10 only** (04 & 15 already match the existing fork-generated MP3s; all others
+> unchanged). Type-clean (tsc/eslint).
+
 | Scene | Reason | Status | Suggested script direction |
 |---|---|---|---|
 | `scene-10` Models | 🎬 | ✍️ | **Script rewritten** in `voiceover-config.ts` — version-less names, all three providers per tier. Audio regen pending. (Draft text below.) |
@@ -149,10 +158,10 @@ Tokens the TTS voice mispronounces or spells out awkwardly. Fix during the same 
 > **✅ 🔴 sweep applied (2026-06-20).** All high-confidence in-text conversions applied across
 > **L2, L3, L5, L6, L7, L8, L10** (13 edits, script-only → status ✍️, audio regen pending). 🟡
 > tokens left for judgment against the George voice. Exceptions:
-> - **L1** — *deferred*: the two L1 configs (`src/voiceover-config.ts` vs
->   `lessons/lesson-1-ai-env-setup/voiceover-config.ts`) have **diverged** (cross-platform rewrite
->   only in the `lessons/` copy; `async/await` only in the `src/` copy). Resolve which is canonical
->   before applying the `async/await`→"async-await" and `tsconfig`/`prettierrc`→spoken edits.
+> - **L1** — ✅ *resolved via consolidation* (see the Lesson 1 section above). The `src/` vs
+>   `lessons/` fork was retired; `src/` is canonical. `scene-04` adopted the cross-platform script
+>   (no `async/await` to convert) and `scene-06` got the `tsconfig`/`prettierrc`→spoken edit. Audio
+>   regen pending for scene-06/07/10.
 > - **L4 `RAG`** — false positive: appears only in the on-screen label "Learners and RAG", never in
 >   the narration. No script change.
 > - **L9** — already regenerated & verified ✅ this session; left untouched to preserve verified audio.

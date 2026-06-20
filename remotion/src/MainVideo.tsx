@@ -17,6 +17,7 @@ import { PlanModeScene } from "./scenes/11-PlanModeScene";
 import { AutopilotScene } from "./scenes/12-AutopilotScene";
 import { FleetScene } from "./scenes/13-FleetScene";
 import { VerifyScene } from "./scenes/14-VerifyScene";
+import { PortabilityScene } from "./scenes/15-PortabilityScene";
 import { VOICEOVER_SCENES, AUDIO_ENABLED } from "./voiceover-config";
 import type { MainVideoProps } from "./calculateMetadata";
 
@@ -38,6 +39,7 @@ const SCENES = [
   AutopilotScene,
   FleetScene,
   VerifyScene,
+  PortabilityScene,
 ] as const;
 
 export const MainVideo: React.FC<MainVideoProps> = ({ sceneDurations }) => (
