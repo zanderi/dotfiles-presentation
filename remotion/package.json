@@ -59,7 +59,7 @@
     "studio:lesson-10": "cross-env LESSON=10 remotion studio",
     "render:lesson-0": "remotion render UpgradeGuide out/lesson-0.mp4",
     "render:lesson-1": "remotion render AIEnvSetup out/lesson-1.mp4",
-    "render:lesson-2": "cross-env LESSON=2 remotion render",
+    "render:lesson-2": "echo Lesson 2 (LessonsLearned) has no registered composition in Root.tsx - nothing to render. && exit 1",
     "render:lesson-2b": "remotion render ContextHierarchy out/lesson-2b.mp4",
     "render:lesson-3": "remotion render FourAutomationLayers out/lesson-3.mp4",
     "render:lesson-4": "remotion render AgentEcosystem out/lesson-4.mp4",
