@@ -23,7 +23,7 @@ export const VOICEOVER_SCENES = [
     label: "The Agent File",
     estimatedFrames: 638,
     script:
-      "An agent is a markdown file with YAML frontmatter. Name, description, tools — those three fields control everything. The body is the instruction set. The frontmatter is the metadata the CLI uses to route, invoke, and constrain. No compiled code, no deployment, no infrastructure. A file.",
+      "An agent is a markdown file with YAML frontmatter. Name, description, model, and tools — four frontmatter fields, plus the body, control everything. The body is the instruction set. The frontmatter is the metadata the CLI uses to route, invoke, and constrain — including which model the agent runs on, so you can match a cheaper model to a lighter agent. No compiled code, no deployment, no infrastructure. A file.",
   },
   {
     id: "scene-02",
@@ -37,7 +37,7 @@ export const VOICEOVER_SCENES = [
     label: "Category and Naming",
     estimatedFrames: 638,
     script:
-      "Universal agents — useful in any project — live in ~/.copilot/agents/ in your dotfiles. Repo-specific agents live in .copilot/agents/ at the repo root. Universal agents use verb-noun names: security-auditor, pr-description-writer. Repo-specific agents prefix with the project name: myapp-api-scaffolder. The naming tells you scope at a glance.",
+      "Universal agents — useful in any project — live in the dot-copilot agents folder in your home directory, synced through your dotfiles. Repo-specific agents live in a dot-copilot agents folder at the repository root. Universal agents use verb-noun names, like security-auditor or pr-description-writer. Repo-specific agents are prefixed with the project name, like myapp-api-scaffolder. The naming tells you the scope at a glance.",
   },
   {
     id: "scene-04",
@@ -65,7 +65,7 @@ export const VOICEOVER_SCENES = [
     label: "Build a Guardian Agent",
     estimatedFrames: 748,
     script:
-      "Now env-config-reviewer. Description: \"Use this agent to verify that no secrets, credentials, or environment-specific values have been committed or are at risk of being committed.\" Tools: grep, glob, view. Hard rules: never modify files — report only. Check .gitignore coverage. Flag hardcoded credential patterns. Output: clear, at-risk, or critical per file. That's a guardian.",
+      "Now env-config-reviewer. Description: \"Use this agent to verify that no secrets, credentials, or environment-specific values have been committed or are at risk of being committed.\" Tools: grep, glob, view. Hard rules: never modify files — report only. Check your git-ignore file coverage. Flag hardcoded credential patterns. Output: clear, at-risk, or critical per file. That's a guardian.",
   },
   {
     id: "scene-08",

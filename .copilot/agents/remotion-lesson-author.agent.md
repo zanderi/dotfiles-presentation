@@ -26,7 +26,7 @@ Before I generate anything, I need a few details:
    - 1280×720 (HD)
    - Other — provide width×height
 4. Voice to use?
-   - Adam (pNInz6obpgDQGcFmaJgB) — standard professional [default]
+   - George (JBFqnCBsd6RMkjVDRZzb) — standard professional [default]
    - John Wayne (requires ELEVENLABS_VOICE_ID override) — retrospective/special content
    - Other — provide voice ID
 5. ElevenLabs model?
@@ -216,9 +216,34 @@ When reviewing or generating scene code, flag any of these patterns as safe area
 Review all scripts for:
 
 - **Word count accuracy:** Count words and verify `estimatedFrames = round(count × 13.846)`. Flag deviations > 20%.
-- **TTS pronunciation hazards:** Spell out as they should be *spoken* — `dot-github` not `.github`, `slash model` not `/model`, `dot env` not `.env`. List all flagged terms with suggested rewrites.
+- **TTS pronunciation hazards:** Audit every script against the **Pronunciation & TTS rules** below. List all flagged terms with suggested rewrites.
 - **Natural pauses:** Short sentences and punctuation create breath pauses. Flag scripts over 60 words with no internal punctuation — they will sound breathless.
 - **Jargon check:** CLI flags, library names, unusual proper nouns that TTS may mispronounce. Suggest phonetic rewrites for anything risky.
+
+### Pronunciation & TTS rules
+
+Voice: **George** (`JBFqnCBsd6RMkjVDRZzb`) — the canonical voice. **Never let a generator fall back to Adam** (`pNInz6obpgDQGcFmaJgB`); that has bitten this project before. Engine `eleven_multilingual_v2` supports **alias substitution only** — no phoneme/IPA tags. Two fix mechanisms, pick by whether the human-readable script should keep the word verbatim:
+
+**1. In-script spoken form** — when the spoken form is also clearer to a reader. Rewrite the script text:
+- Paths → spoken: `dot-github` not `.github`, `slash model` not `/model`, `~/.copilot/copilot-instructions.md` → "the dot-copilot copilot-instructions file in your home directory."
+- Convert these tokens (🔴 the voice mangles them):
+
+  | In script | Say instead |
+  |---|---|
+  | `regex` | "regular expressions" |
+  | `.gitignore` | "your git-ignore file" |
+  | `.editorconfig` / `.prettierrc` / `tsconfig.json` | "your editor-config / Prettier / TypeScript config" |
+  | `AGENTS.md` / `SKILL.md` / `CHANGELOG.md` | "the AGENTS / SKILL / changelog dot-md file" |
+  | `mcp.json` | "your MCP config file" |
+  | `CI/CD`, `async/await` | "C-I-C-D", "async-await" (no slash) |
+  | `RAG` | "retrieval-augmented generation" (else reads as the word "rag") |
+
+  🟡 Verify, don't blindly convert: `MCP`, `YAML`, `BDD`, `npm`, `package.json` — usually fine.
+- Use **version-less model names** so audio doesn't age: Haiku/Sonnet/Opus, GPT mini/GPT/GPT Codex, Gemini Flash/Pro/Deep Think.
+
+**2. Generation-time substitution** — when the word must stay verbatim in the readable script (e.g. `commit`). Do **not** respell it in the script; add a rule to `scripts/tts-pronunciation.ts` (`applyPronunciation`), which every generator runs over `scene.script` before the API call. Known fix: `commit` → `ka-mitt` (reads as "comet" otherwise). **Every generator must import and apply `applyPronunciation`** — see the templates below.
+
+Full audit + per-scene status: `docs/voiceover-script-rework-tracker.md`.
 
 ---
 
@@ -402,9 +427,10 @@ export const calculateMetadata: CalculateMetadataFunction<MainVideoProps> = asyn
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { VOICEOVER_SCENES } from "../src/lessons/lesson-{N}-{slug}/voiceover-config.ts";
+import { applyPronunciation } from "./tts-pronunciation.ts";
 
 const API_KEY = process.env.ELEVENLABS_API_KEY;
-const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? "pNInz6obpgDQGcFmaJgB"; // set in intake
+const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? "JBFqnCBsd6RMkjVDRZzb"; // set in intake
 
 if (!API_KEY) {
   console.error("❌ Missing ELEVENLABS_API_KEY in environment.");
@@ -433,7 +459,7 @@ for (const scene of VOICEOVER_SCENES) {
           Accept: "audio/mpeg",
         },
         body: JSON.stringify({
-          text: scene.script,
+          text: applyPronunciation(scene.script),
           model_id: "eleven_multilingual_v2", // set in intake
           voice_settings: { stability: 0.5, similarity_boost: 0.75, style: 0.3 }, // set in intake
         }),
@@ -484,9 +510,10 @@ if (errorCount === 0) {
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { VOICEOVER_SCENES } from "../src/lessons/lesson-{N}-{slug}/voiceover-config.ts";
+import { applyPronunciation } from "./tts-pronunciation.ts";
 
 const API_KEY = process.env.ELEVENLABS_API_KEY;
-const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? "pNInz6obpgDQGcFmaJgB";
+const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? "JBFqnCBsd6RMkjVDRZzb";
 
 if (!API_KEY) {
   console.error("❌ Missing ELEVENLABS_API_KEY in environment.");
@@ -528,7 +555,7 @@ for (const scene of scenesToProcess) {
           Accept: "audio/mpeg",
         },
         body: JSON.stringify({
-          text: scene.script,
+          text: applyPronunciation(scene.script),
           model_id: "eleven_multilingual_v2",
           voice_settings: { stability: 0.5, similarity_boost: 0.75, style: 0.3 },
         }),

@@ -5,8 +5,28 @@ import { SceneFrame } from "../components/SceneFrame";
 import { StepBadge } from "../components/StepBadge";
 import { Headline } from "../components/Headline";
 import { TwoColumn } from "../components/TwoColumn";
-import { CodeBlock } from "../components/CodeBlock";
 import { BulletList } from "../components/BulletList";
+
+const PLATFORMS = [
+  {
+    name: "Copilot",
+    color: COLORS.blue,
+    cmd: "/agent",
+    path: ".github/agents/*.agent.md",
+  },
+  {
+    name: "Claude",
+    color: COLORS.purple,
+    cmd: "/agents",
+    path: ".claude/agents/*.md",
+  },
+  {
+    name: "Cursor",
+    color: COLORS.orange,
+    cmd: "rules",
+    path: ".cursor/rules/*.mdc",
+  },
+] as const;
 
 export const AgentsScene: React.FC = () => {
   const frame = useCurrentFrame();
@@ -59,12 +79,82 @@ export const AgentsScene: React.FC = () => {
                   color: COLORS.text,
                 }}
               >
-                How to create:
+                How to create — same idea, each tool:
               </div>
-              <CodeBlock
-                delay={20}
-                code={`/agent → Create new agent\n# or manually:\nmkdir .github\\agents\nNew-Item my-agent.agent.md`}
-              />
+              {PLATFORMS.map((p, i) => {
+                const delay = 20 + i * 12;
+                const opacity = interpolate(frame, [delay, delay + 15], [0, 1], {
+                  extrapolateRight: "clamp",
+                  extrapolateLeft: "clamp",
+                  easing: EASE_OUT,
+                });
+                const translateY = interpolate(
+                  frame,
+                  [delay, delay + 20],
+                  [20, 0],
+                  {
+                    extrapolateRight: "clamp",
+                    extrapolateLeft: "clamp",
+                    easing: EASE_OUT,
+                  }
+                );
+                return (
+                  <div
+                    key={p.name}
+                    style={{
+                      opacity,
+                      transform: `translateY(${translateY}px)`,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 4,
+                      paddingLeft: 12,
+                      borderLeft: `3px solid ${p.color}`,
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "baseline",
+                        gap: 10,
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: FONT,
+                          fontSize: 19,
+                          fontWeight: 700,
+                          color: p.color,
+                          minWidth: 76,
+                        }}
+                      >
+                        {p.name}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "monospace",
+                          fontSize: 16,
+                          color: COLORS.text,
+                          background: COLORS.surface,
+                          border: `1px solid ${COLORS.border}`,
+                          borderRadius: 6,
+                          padding: "2px 8px",
+                        }}
+                      >
+                        {p.cmd}
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "monospace",
+                        fontSize: 15,
+                        color: COLORS.muted,
+                      }}
+                    >
+                      {p.path}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           }
           right={

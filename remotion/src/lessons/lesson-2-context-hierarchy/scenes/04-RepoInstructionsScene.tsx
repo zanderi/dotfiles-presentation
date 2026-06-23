@@ -2,7 +2,7 @@ import React from "react";
 import { COLORS } from "../../../constants";
 import { SceneFrame } from "../../../components/SceneFrame";
 import { Headline } from "../../../components/Headline";
-import { CodeBlock } from "../../../components/CodeBlock";
+import { PlatformPaths } from "../../../components/PlatformPaths";
 import { BulletList } from "../../../components/BulletList";
 
 export const RepoInstructionsScene: React.FC = () => {
@@ -10,7 +10,14 @@ export const RepoInstructionsScene: React.FC = () => {
 		<SceneFrame accentColor={COLORS.blue}>
 			<Headline text="Repo Instructions" size="lg" delay={0} />
 			<div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 20, marginTop: 24 }}>
-				<CodeBlock delay={10} code={`.github/copilot-instructions.md`} />
+				<PlatformPaths
+					delay={10}
+					paths={[
+						{ platform: "Copilot", path: ".github/copilot-instructions.md", color: COLORS.blue },
+						{ platform: "Claude", path: "CLAUDE.md", color: COLORS.purple },
+						{ platform: "Cursor", path: ".cursorrules", color: COLORS.orange },
+					]}
+				/>
 				<BulletList
 					delay={25}
 					items={[

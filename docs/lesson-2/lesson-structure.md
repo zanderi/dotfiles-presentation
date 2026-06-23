@@ -1,7 +1,7 @@
 # Lesson 2 — Lessons Learned in AI-Assisted Development: Quick Reference
 
 **Status:** Complete and rendered  
-**Voice:** Adam (ElevenLabs `pNInz6obpgDQGcFmaJgB`, stability 0.5, similarity_boost 0.75, style 0.3)  
+**Voice:** George (ElevenLabs `JBFqnCBsd6RMkjVDRZzb`, stability 0.5, similarity_boost 0.75, style 0.3)  
 **Frame rate:** 30fps  
 **Transitions:** 20-frame crossfade between scenes  
 **Padding:** 60 frames (2s) silence after each scene's audio ends  
@@ -42,7 +42,7 @@ Target audience: engineers who have used Copilot/AI agents and want to use them 
 
 ## Key Production Decisions
 
-- **Voice:** Adam (ElevenLabs default) — standard professional male voice
+- **Voice:** George (ElevenLabs default) — standard professional male voice
 - **Padding:** 60 frames per scene (vs. 45 in lesson 1) — longer scenes need more breathing room between topics
 - **Frame formula:** `(words / 130 WPM) × 30fps` for estimates; `calculateMetadata.ts` overrides with actual MP3 durations at render time
 - **Anonymization:** "Machina" → "a large-scale project" / "demo project" — safe for public GitHub release

@@ -44,7 +44,7 @@ export const MCPScene: React.FC = () => {
             color: COLORS.green,
           }}
         >
-          GitHub MCP is built-in — no setup needed.
+          An open standard for natural-language data access.
         </div>
 
         <BulletList
@@ -67,6 +67,41 @@ export const MCPScene: React.FC = () => {
           delay={50}
           code={`/mcp show        — list all servers\n/mcp add         — connect a new server\n/mcp disable X   — temporarily disable`}
         />
+
+        <div
+          style={{
+            marginTop: 4,
+            padding: 20,
+            background: COLORS.surface,
+            border: `1px solid ${COLORS.border}`,
+            borderRadius: 8,
+            fontFamily: FONT,
+            fontSize: 19,
+            lineHeight: 1.5,
+            color: COLORS.muted,
+            opacity: interpolate(frame, [80, 95], [0, 1], {
+              extrapolateRight: "clamp",
+              extrapolateLeft: "clamp",
+              easing: EASE_OUT,
+            }),
+          }}
+        >
+          🔀{" "}
+          <span style={{ color: COLORS.text, fontWeight: 700 }}>
+            Cross-tool, but bundling differs.
+          </span>{" "}
+          Copilot, Claude, and Cursor all speak MCP — yet the GitHub server ships
+          built-in only on Copilot. In{" "}
+          <span style={{ fontFamily: "monospace", color: COLORS.purple }}>
+            Claude
+          </span>{" "}
+          (<span style={{ fontFamily: "monospace" }}>claude mcp add</span>) and{" "}
+          <span style={{ fontFamily: "monospace", color: COLORS.orange }}>
+            Cursor
+          </span>{" "}
+          (<span style={{ fontFamily: "monospace" }}>.cursor/mcp.json</span>) you
+          add it yourself.
+        </div>
       </div>
     </SceneFrame>
   );

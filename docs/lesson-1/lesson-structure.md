@@ -1,7 +1,7 @@
 # Lesson 1 — AI Dev Setup: Quick Reference
 
 **Status:** Complete and rendered  
-**Voice:** Default ElevenLabs voice (Adam / professional male)  
+**Voice:** Default ElevenLabs voice (George / professional male)  
 **Frame rate:** 30fps  
 **Transitions:** 20 frames between scenes  
 **Audio:** Generated, enabled (`AUDIO_ENABLED = true`)  
@@ -43,7 +43,7 @@ Target audience: software engineers new to AI tooling, or engineers already usin
 
 ## Key Production Decisions
 
-- **Voice:** Standard ElevenLabs Adam voice — same voice used across all lessons
+- **Voice:** Standard ElevenLabs George voice — same voice used across all lessons
 - **Scope:** Deliberately kept to GitHub Copilot CLI only — VS Code extension not covered
 - **Frame formula:** 130 WPM × 13.85 frames/word at 30fps
 - **Transitions:** 20-frame overlap between scenes (already subtracted from total)

@@ -5,7 +5,7 @@
  * and writes MP3 files to public/voiceover/lesson-1/.
  *
  * Run once, then set AUDIO_ENABLED = true in
- * src/lessons/lesson-1-ai-env-setup/voiceover-config.ts
+ * src/voiceover-config.ts
  * and restart Remotion Studio.
  *
  * Usage:
@@ -20,7 +20,8 @@
 
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
-import { VOICEOVER_SCENES } from "../src/lessons/lesson-1-ai-env-setup/voiceover-config.ts";
+import { VOICEOVER_SCENES } from "../src/voiceover-config.ts";
+import { applyPronunciation } from "./tts-pronunciation.ts";
 
 const API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = process.env.ELEVENLABS_VOICE_ID ?? "JBFqnCBsd6RMkjVDRZzb"; // George
@@ -53,7 +54,7 @@ for (const scene of VOICEOVER_SCENES) {
           Accept: "audio/mpeg",
         },
         body: JSON.stringify({
-          text: scene.script,
+          text: applyPronunciation(scene.script),
           model_id: "eleven_multilingual_v2",
           voice_settings: {
             stability: 0.5,
@@ -91,7 +92,7 @@ if (errorCount === 0) {
   );
   console.log(`📊 Total size: ${(totalBytes / 1024).toFixed(0)} KB`);
   console.log(
-    `\n👉 Next: Set AUDIO_ENABLED = true in src/lessons/lesson-1-ai-env-setup/voiceover-config.ts`,
+    `\n👉 Next: Set AUDIO_ENABLED = true in src/voiceover-config.ts`,
   );
   console.log(`👉 Then restart Studio: npm run studio:lesson-1`);
 } else {

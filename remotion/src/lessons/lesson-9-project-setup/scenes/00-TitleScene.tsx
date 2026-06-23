@@ -23,7 +23,7 @@ export const TitleScene: React.FC = () => {
 					The Foundation That Makes AI Generation Reliable
 				</div>
 				<div style={{ opacity: fadeIn(40), transform: `translateY(${slideUp(40)}px)`, fontSize: 24, fontFamily: FONT, color: COLORS.muted }}>
-					22 files before one line of app code — and why it matters
+					~20 files before one line of app code — and why it matters
 				</div>
 			</div>
 			<div style={{ opacity: fadeIn(50), fontFamily: FONT, fontSize: 16, color: COLORS.muted, alignSelf: "flex-end" }}>

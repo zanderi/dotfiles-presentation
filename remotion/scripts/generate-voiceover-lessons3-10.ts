@@ -13,6 +13,7 @@ import { writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
 
 import { VOICEOVER_SCENES as L3 } from "../src/lessons/lesson-3-four-automation-layers/voiceover-config.ts";
+import { applyPronunciation } from "./tts-pronunciation.ts";
 import { VOICEOVER_SCENES as L4 } from "../src/lessons/lesson-4-agent-ecosystem/voiceover-config.ts";
 import { VOICEOVER_SCENES as L5 } from "../src/lessons/lesson-5-content-types/voiceover-config.ts";
 import { VOICEOVER_SCENES as L6 } from "../src/lessons/lesson-6-building-agents/voiceover-config.ts";
@@ -89,7 +90,7 @@ async function generateOne(item: WorkItem): Promise<void> {
         Accept: "audio/mpeg",
       },
       body: JSON.stringify({
-        text: item.scene.script,
+        text: applyPronunciation(item.scene.script),
         model_id: "eleven_multilingual_v2",
         voice_settings: {
           stability: 0.5,

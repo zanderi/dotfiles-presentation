@@ -37,7 +37,7 @@ export const VOICEOVER_SCENES = [
     label: "Layer 2: Skills",
     estimatedFrames: 762,
     script:
-      "A skill has a SKILL.md and optionally a script. Skills are auto-invoked by description match — when your prompt matches a skill's description, the CLI routes to it. Skills can run scripts, which means they have shell access. They're stateless, single-purpose, and semi-automatic. They bridge the gap between a passive instruction and a full agent.",
+      "A skill has a skill dot md file and optionally a script. Skills are auto-invoked by description match — when your prompt matches a skill's description, the CLI routes to it. Skills can run scripts, which means they have shell access. They're stateless, single-purpose, and semi-automatic. They bridge the gap between a passive instruction and a full agent.",
   },
   {
     id: "scene-04",
@@ -51,7 +51,7 @@ export const VOICEOVER_SCENES = [
     label: "Layer 4: Hooks and CI",
     estimatedFrames: 707,
     script:
-      "Git hooks and CI/CD are shell scripts. They fire on mechanical events: pre-commit, commit-msg, push, PR open. They have no judgment. They run the same check every time. Husky manages the hooks locally. GitHub Actions handles remote enforcement. This is the layer that actually fires at git events — not agents.",
+      "Git hooks and continuous integration are shell scripts. They fire on mechanical events: pre-commit, commit-msg, push, PR open. They have no judgment. They run the same check every time. Husky manages the hooks locally. GitHub Actions handles remote enforcement. This is the layer that actually fires at git events — not agents.",
   },
   {
     id: "scene-06",

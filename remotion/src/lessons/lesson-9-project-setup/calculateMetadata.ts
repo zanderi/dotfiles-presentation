@@ -15,6 +15,10 @@ export const calculateMetadata: CalculateMetadataFunction<MainVideoProps> =
 		if (AUDIO_ENABLED) {
 			sceneDurations = await Promise.all(
 				VOICEOVER_SCENES.map(async (scene) => {
+					// Scenes flagged noAudio have no MP3 yet — fall back to the estimate.
+					if ("noAudio" in scene && scene.noAudio) {
+						return scene.estimatedFrames + POST_AUDIO_PADDING_FRAMES;
+					}
 					const durationSecs = await getAudioDuration(
 						staticFile(`voiceover/lesson-9/${scene.id}.mp3`),
 					);

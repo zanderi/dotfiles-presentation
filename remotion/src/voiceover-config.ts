@@ -35,9 +35,9 @@ export const VOICEOVER_SCENES = [
   {
     id: "scene-04",
     label: "Global Instructions",
-    estimatedFrames: 1110,
+    estimatedFrames: 1320,
     script:
-      "Step two. Create your global instructions file. This lives at your home folder, dot copilot, copilot-instructions dot md — and it's the foundation of your entire AI setup. This file tells Copilot who you are. Your preferred languages and frameworks. Your code style — tabs, async/await always, naming conventions. How you want it to communicate — explain your reasoning, teach as you go. Your agent's name and personality. And your security policies. Every project you work in inherits these preferences automatically.",
+      "Step two. Create your global instructions file. In GitHub Copilot, this lives at your home folder, dot copilot, copilot-instructions dot md. If you're using Claude, the equivalent is CLAUDE dot md. If you're using ChatGPT, it's Project Instructions. Different filenames — same architecture. This is the foundation of your entire setup. The file that tells your AI assistant who you are. Your preferred languages and frameworks. Your code style. How you want it to communicate. Your security policies. Every project you work in inherits these preferences automatically. Build it once. It works everywhere.",
   },
   {
     id: "scene-05",
@@ -51,7 +51,7 @@ export const VOICEOVER_SCENES = [
     label: "Tool Configs",
     estimatedFrames: 960,
     script:
-      "Step four. Tool configuration files. These are not optional. Every project should have an editorconfig for indentation and line endings, a prettierrc for formatting rules, an eslint config for code quality, and a tsconfig for TypeScript strictness. Here's the key insight: tool configs come first — before any AI instructions. They define the ground truth for how code should look. Your instruction files build on top of that foundation.",
+      "Step four. Tool configuration files. These are not optional. Every project should have an editor-config file for indentation and line endings, a Prettier config for formatting rules, an ESLint config for code quality, and a TypeScript config for strictness. Here's the key insight: tool configs come first — before any AI instructions. They define the ground truth for how code should look. Your instruction files build on top of that foundation.",
   },
   {
     id: "scene-07",
@@ -79,7 +79,7 @@ export const VOICEOVER_SCENES = [
     label: "Models",
     estimatedFrames: 1050,
     script:
-      "Step nine. Model selection. Not all tasks need the same level of horsepower, and models carry premium multipliers that affect your budget. Lightweight models like Haiku and GPT-4.1 cost about a quarter of the standard rate — great for simple, repetitive tasks. Standard models like Sonnet and GPT-5.2 are the sweet spot for most daily work. Heavy models like Opus are worth the investment for complex architecture or deep analysis. Switch anytime with slash model.",
+      "Step nine. Model selection. Not all tasks need the same horsepower, and heavier models carry premium multipliers that affect your budget. Every provider offers the same three tiers. Lightweight models — like Haiku, GPT mini, or Gemini Flash — cost about a quarter of the standard rate, great for simple, repetitive tasks. Standard models — like Sonnet, GPT, or Gemini Pro — are the sweet spot for most daily work. And heavy models — like Opus, GPT Codex, or Gemini Deep Think — are worth it for complex architecture or deep analysis. Switch anytime with slash model.",
   },
   {
     id: "scene-11",
@@ -108,6 +108,13 @@ export const VOICEOVER_SCENES = [
     estimatedFrames: 1020,
     script:
       "Step thirteen. Verify your environment. Slash instructions shows which instruction files are loaded. Slash env shows your full environment details. Slash skills list confirms your active skills. Slash agent lists your available custom agents. Slash model shows your current model and its cost multiplier. And slash MCP show verifies your connected servers. If everything appears — you're done. You've built a complete, professional AI development environment that goes everywhere you do. Now go build something remarkable.",
+  },
+  {
+    id: "scene-15",
+    label: "Portability",
+    estimatedFrames: 1200,
+    script:
+      "One last thing worth saying explicitly. Everything in this lesson is a practice, not a product. Instruction files, context hierarchies, dotfiles repositories, custom agents, cost discipline — none of this belongs exclusively to GitHub Copilot. Claude reads your AGENTS dot md. Cursor reads your instruction files. ChatGPT Projects can reference your context. The specific commands and filenames differ. The mental model is identical. Build this infrastructure for yourself, and it moves with you — to any tool, on any machine, for any team. You're not learning a tool. You're learning a discipline.",
   },
 ] as const;
 

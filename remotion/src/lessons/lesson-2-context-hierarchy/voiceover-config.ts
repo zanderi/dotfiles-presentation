@@ -37,7 +37,7 @@ export const VOICEOVER_SCENES = [
 		label: "AGENTS.md",
 		estimatedFrames: 748,
 		script:
-			"AGENTS.md at the repo root is model-agnostic. It's not Copilot-specific — any AI coding assistant that follows the convention reads it. Use it for the rules that must apply regardless of which tool is active. Architecture decisions. Security constraints. Things that should never change without an explicit team discussion. Think of it as the constitution for the repo. Everything else is policy. This is the constitution.",
+			"The AGENTS dot md file at the repo root is model-agnostic. It's not Copilot-specific — any AI coding assistant that follows the convention reads it. Use it for the rules that must apply regardless of which tool is active. Architecture decisions. Security constraints. Things that should never change without an explicit team discussion. Think of it as the constitution for the repo. Everything else is policy. This is the constitution.",
 	},
 	{
 		id: "scene-04",
@@ -58,7 +58,7 @@ export const VOICEOVER_SCENES = [
 		label: "Tool Configs",
 		estimatedFrames: 693,
 		script:
-			"Copilot reads your tool config files. .editorconfig sets indentation and line endings. .prettierrc sets formatting rules. tsconfig.json sets your TypeScript compiler targets. These files are context. When Copilot generates code, it checks these constraints. If your generated code has wrong indentation or uses deprecated TypeScript patterns, check whether the relevant config file exists and is accurate.",
+			"Copilot reads your tool config files. Your editor-config file sets indentation and line endings. Your Prettier config sets formatting rules. Your TypeScript config sets your compiler targets. These files are context. When Copilot generates code, it checks these constraints. If your generated code has wrong indentation or uses deprecated TypeScript patterns, check whether the relevant config file exists and is accurate.",
 	},
 	{
 		id: "scene-07",

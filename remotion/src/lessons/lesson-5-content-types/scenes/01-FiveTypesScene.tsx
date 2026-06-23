@@ -35,7 +35,7 @@ export const FiveTypesScene: React.FC = () => {
 					{ icon: "⚡", title: "Skill", body: "Stateless, auto-invoked", color: COLORS.green, delay: 46 },
 					{ icon: "📝", title: "Prompt Template", body: "Reusable starting point", color: COLORS.yellow, delay: 58 },
 				].map((card) => (
-					<div key={card.title} style={{ flex: 1, opacity: fadeIn(card.delay) }}>
+					<div key={card.title} style={{ flex: 1, display: "flex", opacity: fadeIn(card.delay) }}>
 						<InfoCard icon={card.icon} title={card.title} body={card.body} color={card.color} delay={card.delay} />
 					</div>
 				))}
